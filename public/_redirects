@@ -1,4 +1,0 @@
-/* Redirects all routes to index.html for SPA (React Router) */
-/*
-  /index.html  200
-*/
