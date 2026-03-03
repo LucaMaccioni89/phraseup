@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -636,7 +636,7 @@ const PV = [
 // ═══════════════════════════════════════════════════════════════════════
 const CATS   = ["All", "Work & Business", "Daily Life"];
 const LEVELS = ["All", "A2", "B1", "B2", "C1"];
-const ROUND  = 12;
+const ROUND  = 5;
 const SK_SESSIONS = "phraseup_sessions_v3";
 const SK_WRONG    = "phraseup_wrong_v3";
 const SK_THEME    = "phraseup_theme_v1";
@@ -716,28 +716,38 @@ html,body{
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:4px;}
 
-.app{max-width:680px;margin:0 auto;padding:0 1.1rem 6rem;}
+.app{max-width:680px;margin:0 auto;padding:0 .85rem 5rem;}
 
 /* ── NAVBAR ── */
 .navbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 0 0.9rem;border-bottom:1px solid var(--border);
-  margin-bottom:2rem;position:sticky;top:0;z-index:50;
+  display:flex;flex-direction:column;
+  padding:.7rem 0 0;border-bottom:1px solid var(--border);
+  margin-bottom:1.4rem;position:sticky;top:0;z-index:50;
   background:var(--nav-bg);backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
 }
-.logo{display:flex;align-items:center;gap:0.65rem;cursor:pointer;user-select:none;}
+.navbar-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:.6rem;}
+.navbar-links{display:flex;gap:0;border-top:1px solid var(--border);margin:0 -.85rem;}
+.nav-link-btn{
+  flex:1;padding:.45rem .2rem;border:none;background:none;font-family:inherit;
+  font-size:.72rem;font-weight:700;color:var(--text3);cursor:pointer;transition:all .15s;
+  border-bottom:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:1px;
+}
+.nav-link-btn:hover{color:var(--blue2);}
+.nav-link-btn.active{color:var(--blue2);border-bottom-color:var(--blue2);}
+.nav-link-icon{font-size:.9rem;}
+.logo{display:flex;align-items:center;gap:0.55rem;cursor:pointer;user-select:none;}
 .logo-icon{
-  width:44px;height:44px;border-radius:12px;
+  width:36px;height:36px;border-radius:10px;
   background:linear-gradient(145deg,#1e3a8a,#1d4ed8,#2563eb);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 20px rgba(37,99,235,.45);flex-shrink:0;
+  box-shadow:0 0 16px rgba(37,99,235,.45);flex-shrink:0;
 }
-[data-theme="light"] .logo-icon{box-shadow:0 0 14px rgba(37,99,235,.25);}
-.logo-icon svg{width:26px;height:26px;}
+[data-theme="light"] .logo-icon{box-shadow:0 0 10px rgba(37,99,235,.25);}
+.logo-icon svg{width:20px;height:20px;}
 .logo-text{line-height:1;}
 .logo-name{
-  font-weight:900;font-size:1.25rem;letter-spacing:-.04em;
+  font-weight:900;font-size:1.1rem;letter-spacing:-.04em;
   background:linear-gradient(90deg,var(--blue2),var(--blue3));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
@@ -745,12 +755,12 @@ html,body{
   background:linear-gradient(90deg,#1d4ed8,#3b82f6);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
-.logo-tag{font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);}
-.nav-right{display:flex;align-items:center;gap:.5rem;}
+.logo-tag{font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);}
+.nav-right{display:flex;align-items:center;gap:.4rem;}
 .nav-btn{
-  padding:.32rem .85rem;border-radius:50px;
+  padding:.28rem .75rem;border-radius:50px;
   border:1px solid var(--border2);background:none;
-  font-family:inherit;font-size:.8rem;font-weight:700;color:var(--blue2);
+  font-family:inherit;font-size:.75rem;font-weight:700;color:var(--blue2);
   cursor:pointer;transition:all .15s;white-space:nowrap;
 }
 .nav-btn:hover{background:rgba(37,99,235,.1);}
@@ -758,10 +768,10 @@ html,body{
 .nav-btn.danger{color:var(--red);border-color:rgba(220,38,38,.3);}
 .nav-btn.danger:hover{background:rgba(220,38,38,.08);}
 .theme-btn{
-  width:38px;height:38px;border-radius:50%;
+  width:32px;height:32px;border-radius:50%;
   border:1px solid var(--border);background:var(--card);
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all .2s;font-size:.95rem;
+  cursor:pointer;transition:all .2s;font-size:.85rem;
 }
 .theme-btn:hover{border-color:var(--blue2);transform:rotate(15deg);}
 
@@ -772,20 +782,25 @@ html,body{
 /* ── SECTION LABEL ── */
 .sl{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;}
 
-/* ── HOME MODE GRID ── */
-.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.6rem;}
-.mode-grid-3{grid-template-columns:repeat(3,1fr);}
-@media(max-width:480px){.mode-grid-3{grid-template-columns:1fr 1fr;}}
+/* ── HOME MODE TABS ── */
+.mode-grid{display:flex;gap:.5rem;margin-bottom:1.1rem;}
 .mode-card{
-  background:var(--card2);border:1.5px solid var(--border);
-  border-radius:16px;padding:1.4rem 1.2rem;cursor:pointer;
-  transition:all .2s;text-align:left;font-family:inherit;
+  flex:1;background:var(--card2);border:1.5px solid var(--border);
+  border-radius:14px;padding:.7rem .3rem;cursor:pointer;
+  transition:all .18s;text-align:center;font-family:inherit;
+  display:flex;flex-direction:column;align-items:center;gap:.25rem;
 }
-.mode-card:hover{border-color:var(--blue2);transform:translateY(-2px);box-shadow:var(--sh);}
-.mode-card.active{border-color:var(--blue2);background:rgba(37,99,235,.07);}
-.mc-icon{font-size:1.8rem;margin-bottom:.55rem;}
-.mc-title{font-size:1rem;font-weight:800;color:var(--text);margin-bottom:.3rem;}
-.mc-sub{font-size:.8rem;color:var(--text2);line-height:1.5;}
+.mode-card:hover{border-color:var(--blue2);transform:translateY(-1px);}
+.mode-card.active{border-color:var(--blue2);background:rgba(37,99,235,.09);}
+.mc-icon{font-size:1.4rem;line-height:1;}
+.mc-title{font-size:.68rem;font-weight:800;color:var(--text);white-space:nowrap;}
+.mc-sub{display:none;}
+.mode-desc{
+  font-size:.8rem;color:var(--text2);line-height:1.5;
+  margin-bottom:.9rem;padding:.5rem .75rem;
+  background:rgba(37,99,235,.05);border-radius:10px;
+  border-left:3px solid rgba(37,99,235,.25);
+}
 
 /* ── CHIPS ── */
 .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem;}
@@ -983,10 +998,10 @@ html,body{
 .ri-it{font-size:.8rem;color:var(--text2);margin-bottom:.06rem;}
 .ri-en{font-size:.85rem;font-weight:700;color:var(--text);}
 .ri-given{font-size:.76rem;color:var(--text3);font-style:italic;}
-.btn-row{display:flex;gap:.7rem;padding:.9rem 1.3rem 1.2rem;}
-.btn-sec{flex:1;padding:.75rem;border:1.5px solid var(--border2);border-radius:11px;background:none;font-family:inherit;font-size:.88rem;font-weight:700;color:var(--blue2);cursor:pointer;transition:all .15s;}
+.btn-row{display:flex;gap:.5rem;padding:.9rem 1.3rem 1.2rem;}
+.btn-sec{flex:1;padding:.7rem .4rem;border:1.5px solid var(--border2);border-radius:11px;background:none;font-family:inherit;font-size:.82rem;font-weight:700;color:var(--blue2);cursor:pointer;transition:all .15s;white-space:nowrap;}
 .btn-sec:hover{background:rgba(37,99,235,.08);}
-.btn-pri{flex:2;padding:.75rem;border:none;border-radius:11px;background:linear-gradient(135deg,#1e40af,#2563eb);font-family:inherit;font-size:.88rem;font-weight:800;color:white;cursor:pointer;box-shadow:0 0 16px rgba(37,99,235,.28);transition:all .15s;}
+.btn-pri{flex:1;padding:.7rem .4rem;border:none;border-radius:11px;background:linear-gradient(135deg,#1e40af,#2563eb);font-family:inherit;font-size:.82rem;font-weight:800;color:white;cursor:pointer;box-shadow:0 0 16px rgba(37,99,235,.28);transition:all .15s;white-space:nowrap;}
 .btn-pri:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(37,99,235,.45);}
 
 /* ── RIPASSO ── */
@@ -1059,6 +1074,43 @@ html,body{
 @media(max-width:360px){
   .mode-grid{grid-template-columns:1fr;}
 }
+
+/* ── PWA INSTALL BANNER ── */
+.install-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:var(--card2);border-top:1px solid var(--border2);
+  padding:.85rem 1rem .85rem 1rem;
+  display:flex;align-items:center;gap:.75rem;
+  box-shadow:0 -6px 28px rgba(0,0,0,.22);
+  animation:slideUp .38s cubic-bezier(.34,1.4,.64,1) both;
+}
+@keyframes slideUp{from{transform:translateY(110%);opacity:0}to{transform:translateY(0);opacity:1}}
+.ib-icon{
+  width:42px;height:42px;border-radius:11px;flex-shrink:0;
+  background:linear-gradient(145deg,#1e3a8a,#2563eb);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 14px rgba(37,99,235,.4);
+}
+.ib-icon svg{width:24px;height:24px;}
+.ib-text{flex:1;min-width:0;}
+.ib-title{font-size:.9rem;font-weight:800;color:var(--text);line-height:1.25;}
+.ib-sub{font-size:.72rem;color:var(--text3);margin-top:.1rem;}
+.ib-btns{display:flex;gap:.4rem;flex-shrink:0;}
+.ib-yes{
+  padding:.46rem .95rem;border-radius:9px;border:none;
+  font-family:inherit;font-size:.82rem;font-weight:800;color:white;
+  background:linear-gradient(135deg,#1e40af,#2563eb);
+  box-shadow:0 0 12px rgba(37,99,235,.35);cursor:pointer;
+  transition:all .15s;white-space:nowrap;
+}
+.ib-yes:hover{transform:translateY(-1px);box-shadow:0 0 20px rgba(37,99,235,.5);}
+.ib-no{
+  padding:.46rem .7rem;border-radius:9px;background:none;
+  border:1px solid var(--border);font-family:inherit;
+  font-size:.82rem;font-weight:700;color:var(--text3);
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.ib-no:hover{color:var(--text2);border-color:var(--border2);}
 `;
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -1110,6 +1162,31 @@ export default function App() {
   const [pvHistory, setPvHistory] = useState([]);
   const pvInputRef = useRef();
 
+  // Saved decks for "replay same session"
+  const lastCollocDeckRef = useRef([]);
+  const lastPvDeckRef     = useRef([]);
+  const lastPrepDeckRef   = useRef([]);
+
+  // PWA install banner
+  const [showInstall, setShowInstall] = useState(false);
+  useEffect(() => {
+    // Already waiting (set before React mounted)
+    if (window.__pwaPrompt) setShowInstall(true);
+    const handler = () => setShowInstall(true);
+    window.addEventListener('pwaPromptReady', handler);
+    return () => window.removeEventListener('pwaPromptReady', handler);
+  }, []);
+
+  async function triggerInstall() {
+    const prompt = window.__pwaPrompt;
+    if (!prompt) return;
+    prompt.prompt();
+    const { outcome } = await prompt.userChoice;
+    // Whether they accept or dismiss, hide our banner
+    setShowInstall(false);
+    window.__pwaPrompt = null;
+  }
+
   // Persistence
   const [sessions, setSessions] = useState(() => loadSessions());
   const [wrongItems, setWrongItems] = useState(() => loadWrong());
@@ -1139,7 +1216,15 @@ export default function App() {
     if (!filtered.length) return;
     sessionIdRef.current = Date.now();
     const pool = shuffle(filtered).slice(0, Math.min(ROUND, filtered.length));
+    lastCollocDeckRef.current = pool;
     setDeck(pool); setIdx(0); setInput(""); setResult(null); setHistory([]);
+    setScreen("quiz");
+    setTimeout(() => inputRef.current?.focus(), 120);
+  }
+  function replayColloc() {
+    if (!lastCollocDeckRef.current.length) return;
+    sessionIdRef.current = Date.now();
+    setDeck(lastCollocDeckRef.current); setIdx(0); setInput(""); setResult(null); setHistory([]);
     setScreen("quiz");
     setTimeout(() => inputRef.current?.focus(), 120);
   }
@@ -1147,8 +1232,15 @@ export default function App() {
   // Start preps
   function startPreps() {
     sessionIdRef.current = Date.now();
-    const pool = shuffle(PREPS).slice(0, 15).map(q => ({ ...q, opts: shuffle(q.opts) }));
+    const pool = shuffle(PREPS).slice(0, 5).map(q => ({ ...q, opts: shuffle(q.opts) }));
+    lastPrepDeckRef.current = pool;
     setPrepDeck(pool); setPrepIdx(0); setPrepSelected(null); setPrepHistory([]); setShowPrepNext(false);
+    setScreen("preps");
+  }
+  function replayPreps() {
+    if (!lastPrepDeckRef.current.length) return;
+    sessionIdRef.current = Date.now();
+    setPrepDeck(lastPrepDeckRef.current); setPrepIdx(0); setPrepSelected(null); setPrepHistory([]); setShowPrepNext(false);
     setScreen("preps");
   }
 
@@ -1161,7 +1253,15 @@ export default function App() {
     if (!pvFiltered.length) return;
     sessionIdRef.current = Date.now();
     const pool = shuffle(pvFiltered).slice(0, Math.min(ROUND, pvFiltered.length));
+    lastPvDeckRef.current = pool;
     setPvDeck(pool); setPvIdx(0); setPvInput(""); setPvResult(null); setPvHistory([]);
+    setScreen("pvQuiz");
+    setTimeout(() => pvInputRef.current?.focus(), 120);
+  }
+  function replayPv() {
+    if (!lastPvDeckRef.current.length) return;
+    sessionIdRef.current = Date.now();
+    setPvDeck(lastPvDeckRef.current); setPvIdx(0); setPvInput(""); setPvResult(null); setPvHistory([]);
     setScreen("pvQuiz");
     setTimeout(() => pvInputRef.current?.focus(), 120);
   }
@@ -1321,52 +1421,65 @@ export default function App() {
 
         {/* NAVBAR */}
         <nav className="navbar">
-          <div className="logo" onClick={() => inGame ? setShowQuit(true) : setScreen("home")}>
-            <div className="logo-icon"><LogoSVG /></div>
-            <div className="logo-text">
-              <div className="logo-name">PhraseUp!</div>
-              <div className="logo-tag">English Trainer</div>
+          {/* Row 1: logo + theme */}
+          <div className="navbar-top">
+            <div className="logo" onClick={() => inGame ? setShowQuit(true) : setScreen("home")}>
+              <div className="logo-icon"><LogoSVG /></div>
+              <div className="logo-text">
+                <div className="logo-name">PhraseUp!</div>
+                <div className="logo-tag">English Trainer</div>
+              </div>
+            </div>
+            <div className="nav-right">
+              {inGame && (
+                <button className="nav-btn danger" onClick={() => setShowQuit(true)}>✕ Esci</button>
+              )}
+              <button className="theme-btn" onClick={() => applyTheme(theme === "dark" ? "light" : "dark")}>
+                {theme === "dark" ? "☀️" : "🌙"}
+              </button>
             </div>
           </div>
-          <div className="nav-right">
-            {!inGame && (
-              <>
-                <button className={`nav-btn${screen==="ripasso"?" active":""}`} onClick={() => setScreen("ripasso")}>
-                  Ripasso{recentWrong.length > 0 ? ` (${recentWrong.length})` : ""}
-                </button>
-                <button className={`nav-btn${screen==="stats"?" active":""}`} onClick={() => setScreen("stats")}>Stats</button>
-                <button className={`nav-btn${screen==="info"?" active":""}`} onClick={() => setScreen("info")}>Info</button>
-              </>
-            )}
-            {inGame && (
-              <button className="nav-btn danger" onClick={() => setShowQuit(true)}>✕ Esci</button>
-            )}
-            <button className="theme-btn" onClick={() => applyTheme(theme === "dark" ? "light" : "dark")}>
-              {theme === "dark" ? "☀️" : "🌙"}
-            </button>
-          </div>
+          {/* Row 2: nav links (home only) */}
+          {!inGame && (
+            <div className="navbar-links">
+              <button className={`nav-link-btn${screen==="home"?" active":""}`} onClick={() => setScreen("home")}>
+                <span className="nav-link-icon">🏠</span>Home
+              </button>
+              <button className={`nav-link-btn${screen==="ripasso"?" active":""}`} onClick={() => setScreen("ripasso")}>
+                <span className="nav-link-icon">📋</span>
+                Ripasso{recentWrong.length > 0 ? ` (${recentWrong.length})` : ""}
+              </button>
+              <button className={`nav-link-btn${screen==="stats"?" active":""}`} onClick={() => setScreen("stats")}>
+                <span className="nav-link-icon">📊</span>Stats
+              </button>
+              <button className={`nav-link-btn${screen==="info"?" active":""}`} onClick={() => setScreen("info")}>
+                <span className="nav-link-icon">ℹ️</span>Info
+              </button>
+            </div>
+          )}
         </nav>
 
         {/* ══ HOME ══ */}
         {screen === "home" && (
           <div className="screen">
-            <p className="sl">Modalità di esercizio</p>
             <div className="mode-grid mode-grid-3">
               <button className={`mode-card${gameMode==="collocations"?" active":""}`} onClick={() => setGameMode("collocations")}>
                 <div className="mc-icon">📝</div>
                 <div className="mc-title">Collocations</div>
-                <div className="mc-sub">Completa la frase con la combinazione giusta usata dai madrelingua.</div>
               </button>
               <button className={`mode-card${gameMode==="pv"?" active":""}`} onClick={() => setGameMode("pv")}>
                 <div className="mc-icon">🚀</div>
                 <div className="mc-title">Phrasal Verbs</div>
-                <div className="mc-sub">Completa la frase con il phrasal verb corretto nel contesto giusto.</div>
               </button>
               <button className={`mode-card${gameMode==="preps"?" active":""}`} onClick={() => setGameMode("preps")}>
                 <div className="mc-icon">🔗</div>
                 <div className="mc-title">Preposizioni</div>
-                <div className="mc-sub">Scegli la preposizione corretta e memorizza lo schema grammaticale.</div>
               </button>
+            </div>
+            <div className="mode-desc">
+              {gameMode==="collocations" && "Completa la frase con la combinazione di parole giusta usata dai madrelingua."}
+              {gameMode==="pv" && "Completa la frase con il phrasal verb corretto nel contesto dato."}
+              {gameMode==="preps" && "Scegli la preposizione corretta e memorizza lo schema grammaticale."}
             </div>
 
             {gameMode === "collocations" && (
@@ -1424,7 +1537,7 @@ export default function App() {
               <div className="start-card">
                 <div className="start-info">
                   <strong>{PREPS.length} esercizi disponibili</strong>
-                  15 domande per sessione
+                  5 domande per sessione
                 </div>
                 <button className="start-btn" onClick={startPreps}>Inizia ▶</button>
               </div>
@@ -1685,7 +1798,8 @@ export default function App() {
               </div>
               <div className="btn-row">
                 <button className="btn-sec" onClick={() => setScreen("home")}>← Home</button>
-                <button className="btn-pri" onClick={startColloc}>Rigioca ↺</button>
+                <button className="btn-sec" onClick={startColloc}>🔀 Nuova</button>
+                <button className="btn-pri" onClick={replayColloc}>🔄 Rigioca</button>
               </div>
             </div>
           </div>
@@ -1715,7 +1829,8 @@ export default function App() {
               </div>
               <div className="btn-row">
                 <button className="btn-sec" onClick={() => setScreen("home")}>← Home</button>
-                <button className="btn-pri" onClick={startPreps}>Riprova ↺</button>
+                <button className="btn-sec" onClick={startPreps}>🔀 Nuova</button>
+                <button className="btn-pri" onClick={replayPreps}>🔄 Rigioca</button>
               </div>
             </div>
           </div>
@@ -1765,7 +1880,8 @@ export default function App() {
                 </div>
                 <div className="btn-row">
                   <button className="btn-sec" onClick={() => setScreen("home")}>← Home</button>
-                  <button className="btn-pri" onClick={startPv}>Rigioca ↺</button>
+                  <button className="btn-sec" onClick={startPv}>🔀 Nuova</button>
+                  <button className="btn-pri" onClick={replayPv}>🔄 Rigioca</button>
                 </div>
               </div>
             </div>
@@ -1907,12 +2023,12 @@ export default function App() {
             <h1 className="page-title">Info & Disclaimer</h1>
             <div className="info-card">
               <h3>Cos'è PhraseUp!?</h3>
-              <p>PhraseUp! ti aiuta a migliorare l'inglese attraverso le <strong>collocations</strong> — combinazioni di parole naturali usate dai madrelingua — e gli esercizi sulle <strong>preposizioni</strong>.</p>
-              <p>Ogni sessione include domande su situazioni reali di vita quotidiana e lavorativa. La sezione <strong>Ripasso</strong> raccoglie automaticamente gli errori delle ultime 3 sessioni per aiutarti a migliorare nei punti deboli.</p>
+              <p>PhraseUp! ti aiuta a migliorare l'inglese attraverso le <strong>collocations</strong>, i <strong>phrasal verbs</strong> e le <strong>preposizioni</strong> — combinazioni e strutture usate dai madrelingua nei contesti reali.</p>
+              <p>Ogni sessione è breve: <strong>5 domande</strong>. Al termine puoi ripassare gli errori e scegliere di <strong>rigiocare le stesse domande</strong> (🔄 Rigioca) oppure avviarne una nuova (🔀 Nuova). La sezione <strong>Ripasso</strong> raccoglie gli errori delle ultime 3 sessioni.</p>
             </div>
             <div className="info-card">
-              <h3>Valutazione collocations</h3>
-              <p>Il sistema accetta anche risposte parzialmente corrette: <strong>esatta</strong> (parola per parola), <strong>vicina</strong> (≥80% delle parole corrette), <strong>parziale</strong> (≥60%). Solo le risposte molto distanti vengono considerate errate.</p>
+              <h3>Valutazione collocations e phrasal verbs</h3>
+              <p>Il sistema accetta risposte parzialmente corrette: <strong>esatta</strong> (parola per parola), <strong>vicina</strong> (≥80% delle parole giuste), <strong>parziale</strong> (≥60%). Solo le risposte molto distanti vengono considerate errate.</p>
             </div>
             <div className="info-card disc">
               <h3>⚖️ Disclaimer</h3>
@@ -1920,10 +2036,25 @@ export default function App() {
               <p>I dati (sessioni, errori) sono salvati solo sul tuo dispositivo e non vengono trasmessi ad alcun server.</p>
             </div>
             <div className="info-card" style={{textAlign:"center"}}>
-              <div className="version">PhraseUp! v4.0 · {DB.length} collocations · {PV.length} phrasal verbs · {PREPS.length} preposizioni</div>
+              <div className="version">PhraseUp! v5.0 · {DB.length} collocations · {PV.length} phrasal verbs · {PREPS.length} preposizioni</div>
             </div>
             <div style={{display:"flex",justifyContent:"center",marginTop:".5rem",marginBottom:"1rem"}}>
               <button className="nav-btn" onClick={() => setScreen("home")}>← Home</button>
+            </div>
+          </div>
+        )}
+
+        {/* ══ PWA INSTALL BANNER ══ */}
+        {showInstall && (
+          <div className="install-banner">
+            <div className="ib-icon"><LogoSVG /></div>
+            <div className="ib-text">
+              <div className="ib-title">Installa PhraseUp!</div>
+              <div className="ib-sub">Accesso rapido dalla home, funziona offline</div>
+            </div>
+            <div className="ib-btns">
+              <button className="ib-no" onClick={() => setShowInstall(false)}>Ora no</button>
+              <button className="ib-yes" onClick={triggerInstall}>Installa ↓</button>
             </div>
           </div>
         )}

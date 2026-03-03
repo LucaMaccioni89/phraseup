@@ -2,6 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 
+// ── PWA install prompt ────────────────────────────────────────────────
+window.__pwaPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  window.__pwaPrompt = e;
+  window.dispatchEvent(new Event('pwaPromptReady'));
+});
+
 // ── Service Worker registration with auto-update ──────────────────────
 // When a new version is deployed, the SW detects a change, installs in the
 // background, and reloads the page automatically once the new SW activates.
