@@ -1014,29 +1014,50 @@ html,body{
 .ripasso-a span{color:var(--correct);font-weight:700;}
 
 /* ── STATS ── */
-.stats-banner{border-radius:18px;overflow:hidden;margin-bottom:1.3rem;background:var(--card2);border:1.5px solid var(--border2);}
-.stats-top{padding:1.4rem 1.5rem 1rem;border-bottom:1px solid var(--border);}
-.stats-top h2{font-size:1.25rem;font-weight:900;letter-spacing:-.03em;margin-bottom:.15rem;}
-.stats-top p{font-size:.83rem;color:var(--text2);}
-.big-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
-.bstat{background:var(--card2);padding:1rem;text-align:center;}
-.bstat-v{font-size:1.6rem;font-weight:900;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,var(--blue2),var(--indigo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.bstat-l{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-top:.2rem;}
-.chart-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:1.2rem;margin-bottom:1rem;}
-.chart-title{font-size:.85rem;font-weight:700;color:var(--text2);margin-bottom:.15rem;}
-.chart-sub{font-size:.73rem;color:var(--text3);margin-bottom:1.1rem;}
+.stats-global{border-radius:18px;overflow:hidden;margin-bottom:1.1rem;background:var(--card2);border:1.5px solid var(--border2);}
+.stats-top{padding:1.2rem 1.4rem .9rem;border-bottom:1px solid var(--border);}
+.stats-top h2{font-size:1.2rem;font-weight:900;letter-spacing:-.03em;margin-bottom:.12rem;}
+.stats-top p{font-size:.8rem;color:var(--text2);}
+.big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.bstat{background:var(--card2);padding:.9rem;text-align:center;}
+.bstat-v{font-size:1.5rem;font-weight:900;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,var(--blue2),var(--indigo));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.bstat-l{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-top:.2rem;}
+.mode-stat-card{background:var(--card2);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:.9rem;}
+.msc-head{display:flex;align-items:center;gap:.6rem;padding:.8rem 1.1rem;border-bottom:1px solid var(--border);}
+.msc-icon{font-size:1.15rem;line-height:1;}
+.msc-title{font-size:.9rem;font-weight:800;color:var(--text);flex:1;}
+.msc-badge{font-size:.68rem;font-weight:700;padding:.16rem .52rem;border-radius:50px;white-space:nowrap;}
+.msc-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.msc-n{background:var(--card2);padding:.7rem .4rem;text-align:center;}
+.msc-nv{font-size:1.2rem;font-weight:900;letter-spacing:-.03em;line-height:1;}
+.msc-nl{font-size:.57rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-top:.16rem;}
+.msc-chart{padding:.85rem 1rem .5rem;}
+.msc-chart-title{font-size:.68rem;color:var(--text3);margin-bottom:.55rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;}
+.msc-empty{padding:1.2rem;text-align:center;font-size:.8rem;color:var(--text3);}
 .sess-list{background:var(--card2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:1rem;}
 .sess-head{padding:.75rem 1.1rem;border-bottom:1px solid var(--border);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);}
-.sess-row{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.1rem;border-bottom:1px solid rgba(55,140,210,.05);}
+.sess-row{display:flex;align-items:center;gap:.6rem;padding:.72rem 1.1rem;border-bottom:1px solid rgba(55,140,210,.05);}
 .sess-row:last-child{border-bottom:none;}
-.sess-n{font-size:.75rem;font-weight:700;color:var(--text3);width:22px;}
-.sess-d{flex:1;font-size:.83rem;color:var(--text2);}
-.sess-m{font-size:.75rem;color:var(--text3);}
-.sess-acc{font-weight:800;font-size:.9rem;color:var(--blue2);}
-.sess-badge{padding:.13rem .45rem;border-radius:4px;font-size:.68rem;font-weight:700;}
+.sess-n{font-size:.75rem;font-weight:700;color:var(--text3);width:20px;flex-shrink:0;}
+.sess-d{flex:1;font-size:.82rem;color:var(--text2);}
+.sess-acc{font-weight:800;font-size:.9rem;}
+.sess-detail{font-size:.72rem;color:var(--text3);flex-shrink:0;}
+.sess-badge{padding:.13rem .45rem;border-radius:4px;font-size:.68rem;font-weight:700;flex-shrink:0;}
 .sess-badge.good{background:rgba(16,185,129,.12);color:var(--correct);}
 .sess-badge.mid{background:rgba(245,158,11,.12);color:var(--orange);}
 .sess-badge.low{background:rgba(220,38,38,.1);color:var(--wrong-c);}
+
+/* ── STATS TABS ── */
+.stat-tabs{display:flex;gap:.45rem;margin-bottom:1rem;}
+.stat-tab{
+  flex:1;padding:.55rem .3rem;border-radius:11px;
+  border:1.5px solid var(--border);background:var(--card2);
+  font-family:inherit;font-size:.72rem;font-weight:700;color:var(--text3);
+  cursor:pointer;transition:all .15s;display:flex;align-items:center;
+  justify-content:center;gap:.3rem;white-space:nowrap;
+}
+.stat-tab:hover{border-color:var(--blue2);color:var(--text2);}
+.stat-tab.active{border-color:var(--blue2);background:rgba(37,99,235,.08);color:var(--blue2);}
 .no-data{padding:2.5rem;text-align:center;color:var(--text3);font-size:.92rem;line-height:1.8;}
 .ctt{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:.6rem .9rem;}
 .ctt-l{font-size:.72rem;color:var(--text3);margin-bottom:.15rem;}
@@ -1137,6 +1158,7 @@ export default function App() {
   const [showQuit, setShowQuit] = useState(false);
   const [catF, setCatF] = useState("All");
   const [lvF, setLvF] = useState("All");
+  const [statTab, setStatTab] = useState("collocations"); // stats sub-tab
 
   // Colloc state
   const [deck, setDeck] = useState([]);
@@ -1953,65 +1975,95 @@ export default function App() {
         {/* ══ STATS ══ */}
         {screen === "stats" && (
           <div className="screen">
-            <div className="stats-banner">
-              <div className="stats-top">
-                <h2>📊 Statistiche</h2>
-                <p>Riepilogo delle tue sessioni di allenamento</p>
-              </div>
-              <div className="big-stats">
-                {[
-                  [sessions.length,"Sessioni"],
-                  [avgAcc+"%","Media"],
-                  [bestAcc+"%","Record"],
-                  [sessions.filter(s=>s.mode==="Collocations"||s.mode==="Phrasal Verbs").length,"Fill-in"],
-                ].map(([v,l],i) => (
-                  <div key={i} className="bstat">
-                    <div className="bstat-v">{v}</div>
-                    <div className="bstat-l">{l}</div>
-                  </div>
-                ))}
-              </div>
+            <h1 className="page-title">📊 Statistiche</h1>
+
+            <div className="stat-tabs">
+              {[
+                {key:"collocations", icon:"📝", label:"Collocations"},
+                {key:"pv",           icon:"🚀", label:"Phrasal Verbs"},
+                {key:"preps",        icon:"🔗", label:"Preposizioni"},
+              ].map(t => (
+                <button key={t.key}
+                  className={`stat-tab${statTab===t.key?" active":""}`}
+                  onClick={() => setStatTab(t.key)}
+                >
+                  <span>{t.icon}</span> {t.label}
+                </button>
+              ))}
             </div>
-            {sessions.length === 0 ? (
-              <div className="no-data">Nessuna sessione completata.<br/>Fai il primo esercizio per vedere i tuoi dati!</div>
-            ) : (
-              <>
-                <div className="chart-card">
-                  <div className="chart-title">Precisione per sessione (%)</div>
-                  <div className="chart-sub">Andamento nelle ultime sessioni</div>
-                  <ResponsiveContainer width="100%" height={160}>
-                    <AreaChart data={chartData} margin={{top:4,right:4,left:-20,bottom:0}}>
-                      <defs>
-                        <linearGradient id="gAcc" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#2563eb" stopOpacity={0.25}/>
-                          <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(55,140,210,0.08)"/>
-                      <XAxis dataKey="name" tick={{fill:"var(--text3)",fontSize:11}} axisLine={false} tickLine={false}/>
-                      <YAxis domain={[0,100]} tick={{fill:"var(--text3)",fontSize:11}} axisLine={false} tickLine={false}/>
-                      <Tooltip content={<CT/>}/>
-                      <Area type="monotone" dataKey="acc" stroke="#2563eb" strokeWidth={2.5} fill="url(#gAcc)" dot={{fill:"#2563eb",r:3,strokeWidth:0}}/>
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-                <div className="sess-list">
-                  <div className="sess-head">Storico sessioni</div>
-                  {[...sessions].reverse().map((s,i) => (
-                    <div key={i} className="sess-row">
-                      <div className="sess-n">{sessions.length-i}</div>
-                      <div className="sess-d">{s.date}</div>
-                      <div className="sess-m">{s.mode}</div>
-                      <div className="sess-acc">{s.acc}%</div>
-                      <div className={`sess-badge${s.acc>=80?" good":s.acc>=60?" mid":" low"}`}>
-                        {s.acc>=80?"🌟":s.acc>=60?"👍":"📚"}
-                      </div>
+
+            {(() => {
+              const modeLabel = statTab==="collocations" ? "Collocations" : statTab==="pv" ? "Phrasal Verbs" : "Preposizioni";
+              const modeSessions = sessions.filter(s => s.mode === modeLabel);
+              const modeAvg  = modeSessions.length ? Math.round(modeSessions.reduce((a,b)=>a+b.acc,0)/modeSessions.length) : 0;
+              const modeBest = modeSessions.length ? Math.max(...modeSessions.map(s=>s.acc)) : 0;
+              const modeTotal = modeSessions.reduce((a,b)=>a+(b.total||0),0);
+              const modeChart = modeSessions.map((s,i)=>({name:`S${i+1}`,acc:s.acc}));
+              const accentColor = statTab==="collocations" ? "#3b82f6" : statTab==="pv" ? "#a78bfa" : "#34d399";
+              const gradId = "g_"+statTab;
+              return (
+                <>
+                  <div className="stats-banner">
+                    <div className="big-stats">
+                      {[
+                        [modeSessions.length,                             "Sessioni"],
+                        [modeSessions.length ? modeAvg+"%"  : "—",       "Media"],
+                        [modeSessions.length ? modeBest+"%" : "—",       "Record"],
+                        [modeTotal || "—",                                "Domande"],
+                      ].map(([v,l],i) => (
+                        <div key={i} className="bstat">
+                          <div className="bstat-v" style={i===1||i===2 ? {color:accentColor} : {}}>{v}</div>
+                          <div className="bstat-l">{l}</div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </>
-            )}
-            <div style={{display:"flex",justifyContent:"center",marginTop:".5rem"}}>
+                  </div>
+
+                  {modeSessions.length === 0 ? (
+                    <div className="no-data">Nessuna sessione di {modeLabel} ancora.<br/>Fai il primo esercizio per vedere i dati!</div>
+                  ) : (
+                    <>
+                      <div className="chart-card">
+                        <div className="chart-title">Precisione per sessione (%)</div>
+                        <div className="chart-sub">{modeLabel} · {modeSessions.length} sessioni</div>
+                        <ResponsiveContainer width="100%" height={150}>
+                          <AreaChart data={modeChart} margin={{top:4,right:4,left:-20,bottom:0}}>
+                            <defs>
+                              <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%"  stopColor={accentColor} stopOpacity={0.25}/>
+                                <stop offset="95%" stopColor={accentColor} stopOpacity={0}/>
+                              </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(55,140,210,0.08)"/>
+                            <XAxis dataKey="name" tick={{fill:"var(--text3)",fontSize:11}} axisLine={false} tickLine={false}/>
+                            <YAxis domain={[0,100]} tick={{fill:"var(--text3)",fontSize:11}} axisLine={false} tickLine={false}/>
+                            <Tooltip content={<CT/>}/>
+                            <Area type="monotone" dataKey="acc" stroke={accentColor} strokeWidth={2.5}
+                              fill={`url(#${gradId})`} dot={{fill:accentColor,r:3,strokeWidth:0}}/>
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="sess-list">
+                        <div className="sess-head">Storico {modeLabel}</div>
+                        {[...modeSessions].reverse().map((s,i) => (
+                          <div key={i} className="sess-row">
+                            <div className="sess-n">{modeSessions.length-i}</div>
+                            <div className="sess-d">{s.date}</div>
+                            <div className="sess-acc" style={{color:accentColor}}>{s.acc}%</div>
+                            <div className="sess-detail">{s.correct}/{s.total} corrette</div>
+                            <div className={`sess-badge${s.acc>=80?" good":s.acc>=60?" mid":" low"}`}>
+                              {s.acc>=80?"🌟":s.acc>=60?"👍":"📚"}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </>
+              );
+            })()}
+
+            <div style={{display:"flex",justifyContent:"center",marginTop:"1rem"}}>
               <button className="nav-btn" onClick={() => setScreen("home")}>← Home</button>
             </div>
           </div>
