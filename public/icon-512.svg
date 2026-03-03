@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a"/>
+      <stop offset="50%" style="stop-color:#1d4ed8"/>
+      <stop offset="100%" style="stop-color:#2563eb"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="114" fill="url(#bg)"/>
+  <rect width="512" height="256" rx="114" fill="url(#glow)"/>
+  <!-- Speech bubble -->
+  <path d="M90 136 C90 109 111 90 138 90 L374 90 C401 90 422 109 422 136 L422 302 C422 329 401 350 374 350 L272 350 L208 414 L208 350 L138 350 C111 350 90 329 90 302 Z" fill="white" opacity="0.97"/>
+  <!-- Text lines -->
+  <rect x="150" y="158" width="212" height="26" rx="13" fill="#1e40af" opacity="0.5"/>
+  <rect x="150" y="206" width="162" height="26" rx="13" fill="#1e40af" opacity="0.44"/>
+  <rect x="150" y="254" width="188" height="26" rx="13" fill="#1e40af" opacity="0.36"/>
+  <rect x="150" y="302" width="130" height="26" rx="13" fill="#1e40af" opacity="0.28"/>
+</svg>
