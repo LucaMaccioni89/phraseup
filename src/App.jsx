@@ -317,206 +317,318 @@ const DB = [
 // Agent 3 QA: all explanations verified, translations corrected
 // ═══════════════════════════════════════════════════════════════════════
 const PREPS = [
-  { id:1,  s:"She is very good ___ mathematics.",              a:"at",    opts:["at","in","for","with"],    exp:"Si usa 'good at' per indicare un'abilità. Es: He's good at drawing." },
-  { id:2,  s:"He is interested ___ learning new languages.",   a:"in",    opts:["in","at","for","about"],   exp:"'Interested in' indica un interesse verso qualcosa. Es: I'm interested in music." },
-  { id:3,  s:"I'm really excited ___ the trip to New York.",   a:"about", opts:["about","for","at","with"], exp:"'Excited about' esprime entusiasmo per qualcosa di futuro. Es: She's excited about the show." },
-  { id:4,  s:"She is afraid ___ flying.",                      a:"of",    opts:["of","from","at","for"],    exp:"'Afraid of' indica paura di qualcosa. Es: He's afraid of dogs." },
-  { id:5,  s:"He is proud ___ his achievements.",              a:"of",    opts:["of","about","at","with"],  exp:"'Proud of' esprime orgoglio per qualcosa o qualcuno. Es: I'm proud of you." },
-  { id:6,  s:"Are you familiar ___ this software?",            a:"with",  opts:["with","to","of","about"],  exp:"'Familiar with' significa conoscere qualcosa o qualcuno. Es: I'm familiar with the area." },
-  { id:7,  s:"She is responsible ___ the marketing team.",     a:"for",   opts:["for","of","to","about"],   exp:"'Responsible for' indica una responsabilità verso qualcosa. Es: He's responsible for sales." },
-  { id:8,  s:"He is dependent ___ his parents financially.",   a:"on",    opts:["on","from","to","of"],     exp:"'Dependent on' significa fare affidamento su qualcosa o qualcuno. Es: She depends on him." },
-  { id:9,  s:"I'm tired ___ doing the same thing every day.",  a:"of",    opts:["of","from","at","with"],   exp:"'Tired of' indica stanchezza o noia verso qualcosa. Es: I'm tired of waiting." },
-  { id:10, s:"She arrived ___ the airport two hours early.",   a:"at",    opts:["at","in","to","on"],       exp:"Si usa 'at' per luoghi specifici come aeroporto, stazione, hotel. Es: He arrived at the hotel." },
-  { id:11, s:"He applied ___ a job at a tech company.",        a:"for",   opts:["for","to","at","in"],      exp:"'Apply for' si usa per lavori, borse di studio, permessi. Es: She applied for the position." },
-  { id:12, s:"We need to focus ___ the main problem.",         a:"on",    opts:["on","at","in","to"],       exp:"'Focus on' significa concentrarsi su qualcosa. Es: Let's focus on the solution." },
-  { id:13, s:"She insisted ___ paying for dinner.",            a:"on",    opts:["on","in","at","for"],      exp:"'Insist on' indica fermezza su una posizione. Es: He insisted on coming." },
-  { id:14, s:"He is married ___ a doctor.",                    a:"to",    opts:["to","with","for","of"],    exp:"'Married to' indica con chi si è sposati. Non si dice 'married with'. Es: She's married to an actor." },
-  { id:15, s:"I'm looking forward ___ meeting you.",           a:"to",    opts:["to","for","at","about"],   exp:"'Look forward to' è seguito dal gerundio (-ing). Es: I look forward to hearing from you." },
-  { id:16, s:"She succeeded ___ passing the exam.",            a:"in",    opts:["in","at","for","with"],    exp:"'Succeed in' è seguito dal gerundio. Es: He succeeded in convincing them." },
-  { id:17, s:"He apologised ___ being late.",                  a:"for",   opts:["for","about","at","of"],   exp:"'Apologise for' si usa per scusarsi di qualcosa. Es: She apologised for the mistake." },
-  { id:18, s:"We agreed ___ the terms of the contract.",       a:"on",    opts:["on","with","to","about"],  exp:"'Agree on' si usa per accordarsi su un punto specifico. Es: They agreed on a price." },
-  { id:19, s:"She is angry ___ him for no reason.",            a:"with",  opts:["with","at","about","for"], exp:"'Angry with' si usa verso una persona. 'Angry about/at' si usa per situazioni. Es: I'm angry with her." },
-  { id:20, s:"I'm worried ___ the results of the test.",       a:"about", opts:["about","for","of","with"], exp:"'Worried about' indica preoccupazione per qualcosa. Es: She's worried about the exam." },
-  { id:21, s:"He is very kind ___ everyone he meets.",         a:"to",    opts:["to","with","for","of"],    exp:"'Kind to' indica gentilezza verso le persone. Es: She was very kind to me." },
-  { id:22, s:"She spent all her money ___ clothes.",           a:"on",    opts:["on","for","at","with"],    exp:"'Spend money on' indica su cosa si spende denaro. Es: He spends a lot on food." },
-  { id:23, s:"I congratulated her ___ passing her driving test.", a:"on", opts:["on","for","at","about"],   exp:"'Congratulate on' si usa per fare i complimenti per un risultato. Es: They congratulated him on his win." },
-  { id:24, s:"He is jealous ___ his colleague's success.",     a:"of",    opts:["of","about","from","with"], exp:"'Jealous of' indica gelosia verso qualcosa o qualcuno. Es: She's jealous of her sister." },
-  { id:25, s:"She is in charge ___ the whole project.",        a:"of",    opts:["of","for","at","with"],    exp:"'In charge of' significa essere responsabile di qualcosa. Es: Who's in charge of this?" },
-  { id:26, s:"He blamed his sister ___ breaking the vase.",    a:"for",   opts:["for","of","about","at"],   exp:"'Blame someone for' significa incolpare qualcuno di qualcosa. Es: Don't blame me for this." },
-  { id:27, s:"We rely ___ public transport every day.",        a:"on",    opts:["on","in","at","for"],      exp:"'Rely on' significa dipendere da o fidarsi di. Es: You can rely on her." },
-  { id:28, s:"She is very skilled ___ negotiating deals.",     a:"at",    opts:["at","in","for","with"],    exp:"'Skilled at' indica abilità in qualcosa. Es: He's very skilled at cooking." },
-  { id:29, s:"I disagree ___ your conclusion about the data.", a:"with",  opts:["with","about","to","from"], exp:"'Disagree with' si usa per esprimere disaccordo con una persona o un'idea. Es: I disagree with you." },
-  { id:30, s:"He is addicted ___ social media.",               a:"to",    opts:["to","on","for","with"],    exp:"'Addicted to' indica dipendenza da qualcosa. Es: She's addicted to coffee." },
-  { id:31, s:"She is aware ___ the risks involved.",           a:"of",    opts:["of","about","with","for"], exp:"'Aware of' significa essere consapevole di qualcosa. Es: He's aware of the problem." },
-  { id:32, s:"They objected ___ the new proposal.",            a:"to",    opts:["to","against","about","with"], exp:"'Object to' significa opporsi a qualcosa. Es: She objected to the plan." },
-  { id:33, s:"He is very sensitive ___ criticism.",            a:"to",    opts:["to","about","with","of"],  exp:"'Sensitive to' indica sensibilità verso qualcosa. Es: She's sensitive to noise." },
-  { id:34, s:"She suffers ___ migraines when she's stressed.", a:"from",  opts:["from","of","with","at"],   exp:"'Suffer from' si usa per malattie o condizioni. Es: He suffers from asthma." },
-  { id:35, s:"I believe ___ the power of education.",          a:"in",    opts:["in","at","of","about"],    exp:"'Believe in' indica credere nell'esistenza o nel valore di qualcosa. Es: I believe in honesty." },
-  { id:36, s:"He is committed ___ finishing the project.",     a:"to",    opts:["to","for","in","about"],   exp:"'Committed to' indica dedizione e impegno verso qualcosa. Es: She's committed to the cause." },
-  { id:37, s:"She is very cautious ___ making promises.",      a:"about", opts:["about","of","with","in"],  exp:"'Cautious about' indica prudenza verso qualcosa. Es: Be cautious about what you say." },
-  { id:38, s:"We were shocked ___ hearing the news.",          a:"at",    opts:["at","by","of","about"],    exp:"'Shocked at' si usa per uno shock immediato. 'By' è più formale. Es: She was shocked at the result." },
-  { id:39, s:"He is qualified ___ the position of manager.",   a:"for",   opts:["for","to","at","in"],      exp:"'Qualified for' indica avere i requisiti per qualcosa. Es: She's qualified for the job." },
-  { id:40, s:"I'm satisfied ___ the results we achieved.",     a:"with",  opts:["with","about","of","at"],  exp:"'Satisfied with' indica soddisfazione per qualcosa. Es: Are you satisfied with the result?" },
-  { id:41, s:"She is suspicious ___ his motives.",             a:"of",    opts:["of","about","with","at"],  exp:"'Suspicious of' indica sospetto verso qualcuno o qualcosa. Es: He was suspicious of her intentions." },
-  { id:42, s:"He is very loyal ___ his friends.",              a:"to",    opts:["to","with","for","of"],    exp:"'Loyal to' indica fedeltà verso qualcuno. Es: She's very loyal to her team." },
-  { id:43, s:"I'm amazed ___ how quickly she learned.",        a:"at",    opts:["at","by","of","about"],    exp:"'Amazed at' esprime stupore per qualcosa. Es: I'm amazed at your progress." },
-  { id:44, s:"She is capable ___ managing the whole team.",    a:"of",    opts:["of","at","for","with"],    exp:"'Capable of' indica la capacità di fare qualcosa. Es: He's capable of more." },
-  { id:45, s:"He is very keen ___ learning new skills.",       a:"on",    opts:["on","for","about","in"],   exp:"'Keen on' indica entusiasmo per qualcosa. Es: She's very keen on photography." },
-  { id:46, s:"We are satisfied ___ the outcome of the meeting.", a:"with", opts:["with","about","by","of"], exp:"'Satisfied with' indica soddisfazione per un risultato. Es: I'm satisfied with the answer." },
-  { id:47, s:"She contributed ___ the success of the project.", a:"to",   opts:["to","for","in","at"],      exp:"'Contribute to' significa dare un contributo a qualcosa. Es: Everyone contributed to the result." },
-  { id:48, s:"He is very generous ___ his time and money.",    a:"with",  opts:["with","in","of","at"],     exp:"'Generous with' si usa per risorse come tempo e denaro. Es: She's generous with her help." },
-  { id:49, s:"I am fed up ___ waiting all the time.",          a:"with",  opts:["with","of","at","about"],  exp:"'Fed up with' indica stanchezza per qualcosa che si ripete. Es: I'm fed up with the noise." },
-  { id:50, s:"She is fond ___ classical music.",               a:"of",    opts:["of","about","with","for"], exp:"'Fond of' indica affetto o simpatia per qualcosa. Es: He's very fond of animals." },
-  { id:51, s:"He is allergic ___ dust and pollen.",            a:"to",    opts:["to","of","from","with"],   exp:"'Allergic to' indica allergia verso qualcosa. Es: She's allergic to nuts." },
-  { id:52, s:"I was disappointed ___ the quality of the product.", a:"with", opts:["with","about","by","of"], exp:"'Disappointed with' indica delusione per qualcosa. Es: She was disappointed with the service." },
-  { id:53, s:"She is involved ___ several community projects.", a:"in",   opts:["in","with","at","for"],    exp:"'Involved in' significa partecipare attivamente a qualcosa. Es: He's involved in politics." },
-  { id:54, s:"He is obsessed ___ getting everything perfect.", a:"with",  opts:["with","about","by","on"],  exp:"'Obsessed with' indica ossessione per qualcosa. Es: She's obsessed with cleanliness." },
-  { id:55, s:"I'm curious ___ how the story ends.",            a:"about", opts:["about","of","for","at"],   exp:"'Curious about' indica curiosità verso qualcosa. Es: I'm curious about the result." },
-  { id:56, s:"She is not used ___ waking up so early.",        a:"to",    opts:["to","at","for","with"],    exp:"'Used to + gerundio' indica abitudine. Non confondere con 'used to + verbo' (passato). Es: I'm used to working late." },
-  { id:57, s:"He is very good ___ explaining complex topics.", a:"at",    opts:["at","in","for","with"],    exp:"Si usa 'good at' per indicare un'abilità specifica. Es: She's good at maths." },
-  { id:58, s:"I was impressed ___ her presentation.",          a:"by",    opts:["by","with","at","of"],     exp:"'Impressed by' si usa quando qualcosa fa una forte impressione. Es: I was impressed by his skills." },
-  { id:59, s:"She is dedicated ___ her work.",                 a:"to",    opts:["to","for","in","about"],   exp:"'Dedicated to' indica dedizione verso qualcosa. Es: He's dedicated to his family." },
-  { id:60, s:"He was brought up ___ a strict family.",         a:"in",    opts:["in","by","with","at"],     exp:"'Brought up in' si usa per l'ambiente in cui si è cresciuti. Es: She was brought up in Italy." },
-  { id:61, s:"I am very pleased ___ your progress.",           a:"with",  opts:["with","about","at","of"],  exp:"'Pleased with' indica soddisfazione per qualcosa. Es: She's pleased with the result." },
-  { id:62, s:"She is fluent ___ three languages.",             a:"in",    opts:["in","at","with","for"],    exp:"'Fluent in' si usa per la padronanza di una lingua. Es: He's fluent in Spanish." },
-  { id:63, s:"He is terrified ___ spiders.",                   a:"of",    opts:["of","from","at","about"],  exp:"'Terrified of' indica terrore verso qualcosa. Es: She's terrified of heights." },
-  { id:64, s:"I was confused ___ the instructions.",           a:"by",    opts:["by","with","about","of"],  exp:"'Confused by' si usa quando qualcosa causa confusione. Es: I was confused by the map." },
-  { id:65, s:"She is very punctual ___ her appointments.",     a:"with",  opts:["with","at","about","in"],  exp:"'Punctual with' indica puntualità riguardo a qualcosa. Es: He's always punctual with payments." },
-  { id:66, s:"He is not aware ___ the problem.",               a:"of",    opts:["of","about","with","at"],  exp:"'Aware of' significa essere a conoscenza di qualcosa. Es: Are you aware of the risks?" },
-  { id:67, s:"I'm very happy ___ the result of the experiment.", a:"with", opts:["with","about","at","of"], exp:"'Happy with' indica soddisfazione per qualcosa di specifico. Es: Are you happy with the choice?" },
-  { id:68, s:"She is experienced ___ project management.",     a:"in",    opts:["in","at","with","for"],    exp:"'Experienced in' indica esperienza in un campo. Es: He's experienced in finance." },
-  { id:69, s:"He cares deeply ___ his community.",             a:"about", opts:["about","for","of","with"], exp:"'Care about' significa tenere a cuore qualcosa. 'Care for' ha significato diverso (prendersi cura). Es: She cares about equality." },
-  { id:70, s:"I was astonished ___ his rudeness.",             a:"at",    opts:["at","by","of","about"],    exp:"'Astonished at' esprime stupore per qualcosa di specifico. Es: I was astonished at her reaction." },
-  { id:71, s:"She is very ambitious ___ her career.",          a:"about", opts:["about","for","with","in"], exp:"'Ambitious about' indica ambizione verso qualcosa. Es: He's ambitious about his future." },
-  { id:72, s:"He is brilliant ___ solving complex puzzles.",   a:"at",    opts:["at","in","for","with"],    exp:"'Brilliant at' indica grande abilità in qualcosa. Es: She's brilliant at languages." },
-  { id:73, s:"I'm concerned ___ the rising unemployment rate.", a:"about", opts:["about","with","of","for"], exp:"'Concerned about' indica preoccupazione per qualcosa. Es: I'm concerned about his health." },
-  { id:74, s:"She is very adaptable ___ change.",              a:"to",    opts:["to","with","for","of"],    exp:"'Adaptable to' indica capacità di adattarsi a qualcosa. Es: He's adaptable to new environments." },
-  { id:75, s:"He is not accustomed ___ living alone.",         a:"to",    opts:["to","with","for","at"],    exp:"'Accustomed to' indica abitudine a qualcosa. Seguito da gerundio. Es: She's accustomed to long hours." },
-  { id:76, s:"I feel sorry ___ the inconvenience caused.",     a:"for",   opts:["for","about","of","with"], exp:"'Sorry for' si usa per dispiacere verso qualcuno o qualcosa. Es: I'm sorry for the delay." },
-  { id:77, s:"She is very passionate ___ social justice.",     a:"about", opts:["about","for","in","of"],   exp:"'Passionate about' indica passione intensa verso qualcosa. Es: He's passionate about music." },
-  { id:78, s:"He is hopeful ___ a positive outcome.",          a:"about", opts:["about","for","of","with"], exp:"'Hopeful about' indica speranza riguardo a qualcosa. Es: She's hopeful about the future." },
-  { id:79, s:"I'm very upset ___ what happened yesterday.",    a:"about", opts:["about","with","at","of"],  exp:"'Upset about' indica dispiacere o turbamento per qualcosa. Es: He's upset about the news." },
-  { id:80, s:"She is in need ___ urgent medical attention.",   a:"of",    opts:["of","for","at","with"],    exp:"'In need of' significa avere bisogno di qualcosa. Es: The house is in need of repairs." },
-  { id:81, s:"He is very enthusiastic ___ the new proposal.",  a:"about", opts:["about","for","at","with"], exp:"'Enthusiastic about' indica entusiasmo verso qualcosa. Es: She's enthusiastic about the project." },
-  { id:82, s:"I can rely ___ you to get it done.",             a:"on",    opts:["on","in","at","with"],     exp:"'Rely on' significa contare su qualcuno. Es: You can rely on her." },
-  { id:83, s:"She is very confident ___ her abilities.",       a:"in",    opts:["in","about","of","with"],  exp:"'Confident in' indica fiducia nelle proprie capacità. Es: He's confident in his skills." },
-  { id:84, s:"He is bored ___ doing the same routine.",        a:"with",  opts:["with","of","at","about"],  exp:"'Bored with' indica noia per qualcosa che dura nel tempo. Es: I'm bored with this game." },
-  { id:85, s:"I'm not familiar ___ this part of the city.",    a:"with",  opts:["with","to","about","of"],  exp:"'Familiar with' significa conoscere qualcosa. Es: I'm not familiar with the area." },
-  { id:86, s:"She is very polite ___ everyone she speaks to.", a:"to",    opts:["to","with","at","for"],    exp:"'Polite to' indica cortesia verso le persone. Es: He's always polite to strangers." },
-  { id:87, s:"He is late ___ work again today.",               a:"for",   opts:["for","to","at","in"],      exp:"'Late for' si usa per indicare ritardo rispetto a qualcosa. Es: She was late for the meeting." },
-  { id:88, s:"I am opposed ___ any form of discrimination.",   a:"to",    opts:["to","against","about","with"], exp:"'Opposed to' indica opposizione a qualcosa. Es: He's opposed to the changes." },
-  { id:89, s:"She is very grateful ___ all the support.",      a:"for",   opts:["for","of","about","with"], exp:"'Grateful for' indica gratitudine verso qualcosa ricevuto. Es: I'm grateful for your help." },
-  { id:90, s:"He is terrified ___ making mistakes in public.", a:"of",    opts:["of","about","from","at"],  exp:"'Terrified of' indica un forte timore verso qualcosa. Es: She's terrified of the dark." },
-  { id:91, s:"I am very attached ___ my hometown.",            a:"to",    opts:["to","with","for","of"],    exp:"'Attached to' indica attaccamento affettivo verso qualcosa. Es: She's very attached to her dog." },
-  { id:92, s:"She is very strict ___ punctuality.",            a:"about", opts:["about","with","on","in"],  exp:"'Strict about' indica rigidità su una questione. Es: He's strict about the rules." },
-  { id:93, s:"He is incapable ___ lying to people.",           a:"of",    opts:["of","from","at","with"],   exp:"'Incapable of' indica l'incapacità di fare qualcosa. Es: She seems incapable of listening." },
-  { id:94, s:"I was astonished ___ his unexpected kindness.",  a:"by",    opts:["by","at","of","with"],     exp:"'Astonished by' (più formale) si usa quando qualcosa ti lascia stupito. Es: We were astonished by the view." },
-  { id:95, s:"She is very talented ___ playing the piano.",    a:"at",    opts:["at","in","for","with"],    exp:"'Talented at' indica talento in qualcosa. Es: He's talented at painting." },
-  { id:96, s:"He complained ___ the noise coming from next door.", a:"about", opts:["about","of","at","for"], exp:"'Complain about' si usa per lamentarsi di qualcosa. Es: She complained about the food." },
-  { id:97, s:"I'm very keen ___ trying new restaurants.",      a:"on",    opts:["on","for","about","in"],   exp:"'Keen on' indica entusiasmo o interesse per qualcosa. Es: He's keen on football." },
-  { id:98, s:"She is very active ___ her local community.",    a:"in",    opts:["in","at","with","for"],    exp:"'Active in' indica partecipazione a qualcosa. Es: He's active in local politics." },
-  { id:99, s:"He is very selective ___ who he spends time with.", a:"about", opts:["about","with","of","in"], exp:"'Selective about' indica selettività su qualcosa. Es: She's selective about what she eats." },
-  { id:100,s:"I am looking forward ___ the holidays.",         a:"to",    opts:["to","for","about","at"],   exp:"'Look forward to' è sempre seguito da un sostantivo o gerundio. Es: I look forward to seeing you." },
-  { id:101,s:"She is very enthusiastic ___ her new role.",     a:"about", opts:["about","for","in","with"], exp:"'Enthusiastic about' esprime entusiasmo per qualcosa. Es: He's enthusiastic about the idea." },
-  { id:102,s:"He is afraid ___ commitment in relationships.",  a:"of",    opts:["of","from","about","with"], exp:"'Afraid of' indica paura verso qualcosa di specifico. Es: She's afraid of failure." },
-  { id:103,s:"I'm not happy ___ the way this was handled.",    a:"about", opts:["about","with","of","at"],  exp:"'Happy about' si usa per situazioni. 'Happy with' si usa per risultati. Es: I'm not happy about the delay." },
-  { id:104,s:"She is qualified ___ the senior manager role.",  a:"for",   opts:["for","to","in","at"],      exp:"'Qualified for' indica avere i requisiti necessari per qualcosa. Es: He's qualified for the job." },
-  { id:105,s:"He is very bad ___ managing his time.",          a:"at",    opts:["at","in","with","for"],    exp:"'Bad at' è l'opposto di 'good at', indica mancanza di abilità. Es: I'm bad at cooking." },
-  { id:106,s:"The company is known ___ its excellent service.", a:"for",  opts:["for","by","of","as"],      exp:"'Known for' indica per cosa qualcosa è famoso. Es: Italy is known for its food." },
-  { id:107,s:"She dreams ___ becoming a professional singer.",  a:"of",   opts:["of","about","for","at"],   exp:"'Dream of' indica il sogno di qualcosa. Es: He dreams of travelling the world." },
-  { id:108,s:"He succeeded ___ getting the job he wanted.",    a:"in",    opts:["in","at","with","for"],    exp:"'Succeed in' è seguito dal gerundio. Es: She succeeded in passing all the exams." },
-  { id:109,s:"I'm thinking ___ changing my career.",           a:"of",    opts:["of","about","for","on"],   exp:"'Think of' e 'think about' si usano entrambi per riflessioni. 'Think of' è più immediato. Es: I'm thinking of leaving." },
-  { id:110,s:"She is determined ___ making a difference.",     a:"to",    opts:["to","in","on","about"],    exp:"'Determined to' è seguito dall'infinito. Indica determinazione. Es: He's determined to succeed." },
-  { id:111,s:"He is not cut out ___ this kind of work.",       a:"for",   opts:["for","to","in","at"],      exp:"'Cut out for' significa essere adatto a qualcosa. Es: She's not cut out for the job." },
-  { id:112,s:"I am responsible ___ my own decisions.",         a:"for",   opts:["for","of","to","about"],   exp:"'Responsible for' indica responsabilità verso qualcosa. Es: You are responsible for your actions." },
-  { id:113,s:"She is dedicated ___ improving her English.",    a:"to",    opts:["to","in","for","on"],      exp:"'Dedicated to' indica dedizione verso qualcosa. Es: He's dedicated to his sport." },
-  { id:114,s:"He is very proud ___ what his children achieved.", a:"of",  opts:["of","about","for","with"], exp:"'Proud of' esprime orgoglio per qualcuno o qualcosa. Es: She's very proud of her son." },
-  { id:115,s:"I apologise ___ any inconvenience caused.",      a:"for",   opts:["for","about","of","to"],   exp:"'Apologise for' si usa per scusarsi di qualcosa. Es: I apologise for the confusion." },
-  { id:116,s:"She is eligible ___ a promotion this year.",     a:"for",   opts:["for","to","of","in"],      exp:"'Eligible for' indica avere diritto a qualcosa. Es: He's eligible for a bonus." },
-  { id:117,s:"He is very critical ___ the new regulations.",   a:"of",    opts:["of","about","with","at"],  exp:"'Critical of' indica giudizio critico verso qualcosa. Es: She's critical of the system." },
-  { id:118,s:"I'm very disappointed ___ his attitude.",        a:"with",  opts:["with","about","by","of"],  exp:"'Disappointed with' indica delusione verso qualcosa o qualcuno. Es: She's disappointed with her results." },
-  { id:119,s:"She was angry ___ herself for making that mistake.", a:"with", opts:["with","at","about","of"], exp:"'Angry with' si usa con persone. Es: He was angry with himself." },
-  { id:120,s:"He is very enthusiastic ___ outdoor sports.",    a:"about", opts:["about","for","in","with"], exp:"'Enthusiastic about' esprime entusiasmo. Es: She's enthusiastic about new challenges." },
-  { id:121,s:"I'm bored ___ watching TV every evening.",       a:"with",  opts:["with","of","at","by"],     exp:"'Bored with' indica noia verso qualcosa di ripetitivo. Es: I'm bored with the same routine." },
-  { id:122,s:"She is very popular ___ her colleagues.",        a:"with",  opts:["with","among","to","for"], exp:"'Popular with' si usa per persone o gruppi. Es: He's very popular with students." },
-  { id:123,s:"He is very patient ___ his children.",           a:"with",  opts:["with","to","for","about"], exp:"'Patient with' indica pazienza verso qualcuno. Es: She's very patient with beginners." },
-  { id:124,s:"I'm not sure ___ the answer to this question.",  a:"about", opts:["about","of","with","on"],  exp:"'Sure about' e 'sure of' si usano entrambi, ma 'about' è più comune nel parlato. Es: I'm not sure about that." },
-  { id:125,s:"She is very skeptical ___ his intentions.",      a:"about", opts:["about","of","with","at"],  exp:"'Skeptical about/of' indica scetticismo. Es: I'm skeptical about the results." },
-  { id:126,s:"He is always late ___ paying his bills.",        a:"in",    opts:["in","for","with","at"],    exp:"'Late in' si usa per indicare tardività nel fare qualcosa. Es: She was late in submitting the report." },
-  { id:127,s:"I'm very interested ___ ancient history.",       a:"in",    opts:["in","about","on","for"],   exp:"'Interested in' indica interesse verso un argomento. Es: He's very interested in science." },
-  { id:128,s:"She is not very comfortable ___ public speaking.", a:"with", opts:["with","in","about","at"], exp:"'Comfortable with' indica agio o disinvoltura verso qualcosa. Es: I'm not comfortable with the idea." },
-  { id:129,s:"He was astonished ___ the amount of work needed.", a:"at",  opts:["at","by","with","of"],     exp:"'Astonished at' esprime stupore per qualcosa di specifico. Es: She was astonished at his rudeness." },
-  { id:130,s:"I was very impressed ___ the quality of the food.", a:"by", opts:["by","with","at","of"],     exp:"'Impressed by' si usa quando qualcosa fa impressione su di noi. Es: Everyone was impressed by her speech." },
-  { id:131,s:"She is very good ___ remembering names.",        a:"at",    opts:["at","in","for","with"],    exp:"'Good at' si usa per abilità. Es: He's good at dealing with problems." },
-  { id:132,s:"He is very sensitive ___ other people's feelings.", a:"to", opts:["to","about","with","of"],  exp:"'Sensitive to' indica sensibilità verso qualcosa. Es: She's sensitive to cold weather." },
-  { id:133,s:"I'm very much in favour ___ the new policy.",    a:"of",    opts:["of","for","with","about"], exp:"'In favour of' significa essere a favore di qualcosa. Es: I'm in favour of the changes." },
-  { id:134,s:"She is not very good ___ dealing with stress.",  a:"at",    opts:["at","in","with","for"],    exp:"'Good at' si usa per abilità. Es: He's good at staying calm." },
-  { id:135,s:"He is very frank ___ his opinions.",             a:"about", opts:["about","with","on","in"],  exp:"'Frank about' indica schiettezza su un argomento. Es: She's very frank about her feelings." },
-  { id:136,s:"I'm very worried ___ her health lately.",        a:"about", opts:["about","for","of","with"], exp:"'Worried about' indica preoccupazione per qualcosa. Es: He's worried about his future." },
-  { id:137,s:"She is not very confident ___ her driving.",     a:"about", opts:["about","in","with","of"],  exp:"'Confident about' si usa per situazioni. 'Confident in' per capacità. Es: He's not confident about the exam." },
-  { id:138,s:"He is very good ___ keeping secrets.",           a:"at",    opts:["at","in","with","for"],    exp:"'Good at' indica abilità in qualcosa. Es: She's good at listening." },
-  { id:139,s:"I'm really excited ___ starting my new job.",   a:"about", opts:["about","for","at","with"],  exp:"'Excited about' esprime entusiasmo per un evento futuro. Es: She's excited about moving abroad." },
-  { id:140,s:"She is not very happy ___ working weekends.",    a:"about", opts:["about","with","at","of"],  exp:"'Happy about' si usa per situazioni. Es: Nobody is happy about the decision." },
-  { id:141,s:"He is very different ___ his brother.",          a:"from",  opts:["from","to","than","with"], exp:"'Different from' è la forma standard. 'Different to' è accettato in inglese britannico. Es: She's very different from her sister." },
-  { id:142,s:"I'm very keen ___ the idea of living abroad.",   a:"on",    opts:["on","about","for","in"],   exp:"'Keen on' indica forte interesse o entusiasmo. Es: He's keen on the proposal." },
-  { id:143,s:"She is very committed ___ her studies.",         a:"to",    opts:["to","for","in","about"],   exp:"'Committed to' indica dedizione verso qualcosa. Es: He's committed to making it work." },
-  { id:144,s:"He is not prepared ___ such a difficult exam.",  a:"for",   opts:["for","to","on","about"],   exp:"'Prepared for' indica essere pronti per qualcosa. Es: Are you prepared for the interview?" },
-  { id:145,s:"I was very touched ___ her kind words.",         a:"by",    opts:["by","with","at","of"],     exp:"'Touched by' indica essere commossi da qualcosa. Es: He was touched by her gesture." },
-  { id:146,s:"She is very popular ___ her students.",          a:"with",  opts:["with","among","to","for"], exp:"'Popular with' si usa per persone o gruppi. Es: He's very popular with his fans." },
-  { id:147,s:"He is very passionate ___ his work.",            a:"about", opts:["about","for","in","with"], exp:"'Passionate about' indica passione intensa. Es: She's passionate about cooking." },
-  { id:148,s:"I'm very worried ___ the impact on the environment.", a:"about", opts:["about","for","of","with"], exp:"'Worried about' indica preoccupazione per qualcosa. Es: She's worried about climate change." },
-  { id:149,s:"She is not very impressed ___ his excuse.",      a:"by",    opts:["by","with","at","of"],     exp:"'Impressed by' si usa quando qualcosa fa impressione. Es: I was not impressed by his performance." },
-  { id:150,s:"He is very dedicated ___ his craft.",            a:"to",    opts:["to","in","for","about"],   exp:"'Dedicated to' indica grande dedizione verso qualcosa. Es: She's dedicated to her art." },
-  { id:151,s:"I'm not very good ___ saying no to people.",     a:"at",    opts:["at","in","with","for"],    exp:"'Good at' si usa per abilità o capacità. Es: He's not good at handling rejection." },
-  { id:152,s:"She is very serious ___ achieving her goals.",   a:"about", opts:["about","in","with","for"], exp:"'Serious about' indica determinazione verso qualcosa. Es: He's serious about becoming a doctor." },
-  { id:153,s:"He is very anxious ___ the test results.",       a:"about", opts:["about","for","of","with"], exp:"'Anxious about' indica ansia per qualcosa. Es: She's anxious about the interview." },
-  { id:154,s:"I'm very grateful ___ your support and advice.", a:"for",   opts:["for","of","about","with"], exp:"'Grateful for' indica gratitudine verso qualcosa ricevuto. Es: We're grateful for your understanding." },
-  { id:155,s:"She is not very familiar ___ modern technology.", a:"with",  opts:["with","to","about","in"], exp:"'Familiar with' significa conoscere bene qualcosa. Es: Are you familiar with this software?" },
-  { id:156,s:"He is very interested ___ renewable energy.",    a:"in",    opts:["in","about","on","for"],   exp:"'Interested in' indica interesse verso un argomento. Es: She's interested in art." },
-  { id:157,s:"I'm very excited ___ the prospect of travelling.", a:"about", opts:["about","for","at","with"], exp:"'Excited about' esprime entusiasmo per qualcosa. Es: He's excited about the challenge." },
-  { id:158,s:"She is very skilled ___ managing difficult situations.", a:"at", opts:["at","in","with","for"], exp:"'Skilled at' indica abilità in qualcosa. Es: He's very skilled at problem-solving." },
-  { id:159,s:"He is not very comfortable ___ accepting criticism.", a:"with", opts:["with","about","at","in"], exp:"'Comfortable with' indica agio verso qualcosa. Es: She's not comfortable with confrontation." },
-  { id:160,s:"I'm looking forward ___ the weekend.",           a:"to",    opts:["to","for","about","at"],   exp:"'Look forward to' è sempre seguito da un sostantivo o gerundio. Es: I look forward to your reply." },
-  { id:161,s:"She is very conscious ___ her appearance.",      a:"of",    opts:["of","about","with","at"],  exp:"'Conscious of' indica consapevolezza verso qualcosa. Es: He's very conscious of his posture." },
-  { id:162,s:"He is very fond ___ spicy food.",                a:"of",    opts:["of","about","with","for"], exp:"'Fond of' indica affetto o piacere per qualcosa. Es: I'm very fond of jazz music." },
-  { id:163,s:"I'm not very happy ___ the outcome of the vote.", a:"with",  opts:["with","about","at","of"], exp:"'Happy with' indica soddisfazione per un risultato. Es: Are you happy with the arrangement?" },
-  { id:164,s:"She is very suspicious ___ his sudden generosity.", a:"of",  opts:["of","about","with","at"], exp:"'Suspicious of' indica sospetto verso qualcuno. Es: I'm suspicious of his motives." },
-  { id:165,s:"He is very proud ___ his country's heritage.",   a:"of",    opts:["of","about","for","with"], exp:"'Proud of' esprime orgoglio per qualcosa. Es: She's proud of her culture." },
-  { id:166,s:"I'm very worried ___ the rise in living costs.", a:"about", opts:["about","for","of","with"], exp:"'Worried about' indica preoccupazione per qualcosa. Es: He's worried about paying rent." },
-  { id:167,s:"She is totally absorbed ___ her new book.",      a:"in",    opts:["in","by","with","at"],     exp:"'Absorbed in' indica essere completamente immersi in qualcosa. Es: He's absorbed in his work." },
-  { id:168,s:"He is very quick ___ picking up new languages.", a:"at",    opts:["at","in","with","for"],    exp:"'Quick at' indica velocità nell'imparare qualcosa. Es: She's very quick at maths." },
-  { id:169,s:"I was very surprised ___ her sudden decision.",  a:"by",    opts:["by","at","with","of"],     exp:"'Surprised by' (quando qualcosa ti sorprende). 'Surprised at' è più comune nel parlato. Es: I was surprised by her choice." },
-  { id:170,s:"She is very optimistic ___ her career prospects.", a:"about", opts:["about","for","of","with"], exp:"'Optimistic about' indica ottimismo riguardo a qualcosa. Es: He's optimistic about the future." },
-  { id:171,s:"He is very knowledgeable ___ European history.", a:"about", opts:["about","in","on","with"],  exp:"'Knowledgeable about' indica grande conoscenza di un argomento. Es: She's knowledgeable about art." },
-  { id:172,s:"I'm very concerned ___ the lack of transparency.", a:"about", opts:["about","with","of","for"], exp:"'Concerned about' indica preoccupazione per qualcosa. Es: He's concerned about the impact." },
-  { id:173,s:"She has always been interested ___ astronomy.",  a:"in",    opts:["in","about","on","for"],   exp:"'Interested in' indica un interesse verso un argomento. Es: I've always been interested in science." },
-  { id:174,s:"He is very talented ___ writing short stories.", a:"at",    opts:["at","in","for","with"],    exp:"'Talented at' indica talento in qualcosa. Es: She's very talented at drawing." },
-  { id:175,s:"I'm not very keen ___ watching horror films.",   a:"on",    opts:["on","about","for","in"],   exp:"'Keen on' indica entusiasmo o interesse. La forma negativa indica mancanza di interesse. Es: I'm not keen on the idea." },
-  { id:176,s:"She is very independent ___ her family.",        a:"of",    opts:["of","from","with","about"], exp:"'Independent of' indica indipendenza rispetto a qualcosa. Es: He's financially independent of his parents." },
-  { id:177,s:"He is very good ___ thinking outside the box.",  a:"at",    opts:["at","in","for","with"],    exp:"'Good at' si usa per abilità. Es: She's good at finding creative solutions." },
-  { id:178,s:"I'm very enthusiastic ___ the new initiative.",  a:"about", opts:["about","for","in","with"], exp:"'Enthusiastic about' esprime entusiasmo. Es: He's very enthusiastic about the programme." },
-  { id:179,s:"She is very aware ___ the environmental impact.", a:"of",   opts:["of","about","with","at"],  exp:"'Aware of' significa essere consapevole di qualcosa. Es: Are you aware of the consequences?" },
-  { id:180,s:"He is very reliant ___ others for motivation.",  a:"on",    opts:["on","upon","in","from"],   exp:"'Reliant on' indica dipendenza da qualcuno o qualcosa. Es: She's heavily reliant on coffee." },
-  { id:181,s:"I'm very hopeful ___ a quick recovery.",         a:"about", opts:["about","for","of","in"],   exp:"'Hopeful about' indica speranza riguardo a qualcosa. Es: She's hopeful about the results." },
-  { id:182,s:"She is very confident ___ making the right call.", a:"about", opts:["about","in","of","with"], exp:"'Confident about' si usa per situazioni e decisioni. Es: He's confident about the outcome." },
-  { id:183,s:"He is very anxious ___ meeting new people.",     a:"about", opts:["about","of","with","at"],  exp:"'Anxious about' indica ansia verso qualcosa di imminente. Es: I'm anxious about the presentation." },
-  { id:184,s:"I'm very suspicious ___ his sudden change of heart.", a:"of", opts:["of","about","with","at"], exp:"'Suspicious of' indica sospetto verso qualcuno. Es: She's suspicious of his real intentions." },
-  { id:185,s:"She is very confident ___ herself and her choices.", a:"in", opts:["in","about","of","with"],  exp:"'Confident in' indica fiducia nelle proprie capacità. Es: He's confident in his team." },
-  { id:186,s:"He is very passionate ___ environmental issues.", a:"about", opts:["about","for","in","with"], exp:"'Passionate about' indica passione intensa verso un tema. Es: She's passionate about equality." },
-  { id:187,s:"I'm very satisfied ___ the progress I've made.", a:"with",  opts:["with","about","of","at"],  exp:"'Satisfied with' indica soddisfazione per un risultato concreto. Es: Are you satisfied with the service?" },
-  { id:188,s:"She is very reluctant ___ accept any help.",     a:"to",    opts:["to","about","in","of"],    exp:"'Reluctant to' è seguito dall'infinito. Indica riluttanza. Es: He's reluctant to admit his mistake." },
-  { id:189,s:"He is very open ___ new ideas and suggestions.", a:"to",    opts:["to","about","for","with"],  exp:"'Open to' indica apertura verso qualcosa. Es: She's very open to feedback." },
-  { id:190,s:"I'm very curious ___ what she said to him.",     a:"about", opts:["about","of","for","at"],   exp:"'Curious about' indica curiosità verso qualcosa. Es: He's curious about the outcome." },
-  { id:191,s:"She is not very proud ___ what she did.",        a:"of",    opts:["of","about","for","with"], exp:"'Proud of' si usa anche in senso negativo. Es: She's not proud of her behaviour." },
-  { id:192,s:"He is very uncomfortable ___ discussing money.", a:"with",  opts:["with","about","at","in"],  exp:"'Uncomfortable with' indica disagio verso qualcosa. Es: She's uncomfortable with lying." },
-  { id:193,s:"I'm completely absorbed ___ this documentary.",  a:"in",    opts:["in","by","with","at"],     exp:"'Absorbed in' indica essere completamente immersi. Es: She's absorbed in her studies." },
-  { id:194,s:"She is very experienced ___ handling complaints.", a:"in",  opts:["in","at","with","for"],    exp:"'Experienced in' indica esperienza in un campo specifico. Es: He's experienced in customer service." },
-  { id:195,s:"He is very much in love ___ her.",               a:"with",  opts:["with","of","for","about"], exp:"'In love with' indica innamoramento verso qualcuno. Es: She's madly in love with him." },
-  { id:196,s:"I'm very concerned ___ the quality of the work.", a:"about", opts:["about","with","of","for"], exp:"'Concerned about' indica preoccupazione per qualcosa. Es: I'm concerned about the deadline." },
-  { id:197,s:"She is very realistic ___ her expectations.",    a:"about", opts:["about","with","of","in"],  exp:"'Realistic about' indica obiettività verso qualcosa. Es: He's realistic about his chances." },
-  { id:198,s:"He is completely devoted ___ his family.",       a:"to",    opts:["to","for","in","about"],   exp:"'Devoted to' indica dedizione totale verso qualcuno o qualcosa. Es: She's devoted to her students." },
-  { id:199,s:"I'm very upset ___ being excluded from the meeting.", a:"about", opts:["about","with","at","of"], exp:"'Upset about' indica dispiacere o frustrazione per qualcosa. Es: He's upset about the decision." },
-  { id:200,s:"She is very excited ___ her upcoming wedding.",  a:"about", opts:["about","for","at","with"], exp:"'Excited about' esprime entusiasmo per qualcosa di imminente. Es: They're excited about the trip." },
+  { id:1,  s:"She is very good ___ mathematics.",              a:"at",    opts:["at","in","for","with"],    exp:"Schema: good/bad/skilled/quick/talented AT → abilità specifica. AT punta su un bersaglio preciso. ✗ good IN maths" },
+  { id:2,  s:"He is interested ___ learning new languages.",   a:"in",    opts:["in","at","for","about"],   exp:"Schema: interested/involved/experienced IN → dentro un campo o argomento. IN = dentro. ✗ interested ABOUT" },
+  { id:3,  s:"I'm really excited ___ the trip to New York.",   a:"about", opts:["about","for","at","with"], exp:"Schema: excited/happy/worried/upset ABOUT → emozione per qualcosa di futuro o passato. ✗ excited FOR" },
+  { id:4,  s:"She is afraid ___ flying.",                      a:"of",    opts:["of","from","at","for"],    exp:"Schema: afraid/scared/terrified/proud/ashamed OF → la preposizione OF lega un'emozione al suo oggetto. ✗ afraid FROM" },
+  { id:5,  s:"He is proud ___ his achievements.",              a:"of",    opts:["of","about","at","with"],  exp:"Schema: proud/ashamed/scared/tired OF → OF indica l'oggetto dell'emozione. Stessa famiglia di afraid OF." },
+  { id:6,  s:"Are you familiar ___ this software?",            a:"with",  opts:["with","to","of","about"],  exp:"Schema: familiar/popular/in love WITH → WITH indica connessione con una persona o cosa. ✗ familiar TO" },
+  { id:7,  s:"She is responsible ___ the marketing team.",     a:"for",   opts:["for","of","to","about"],   exp:"Schema: responsible/famous/known/ready FOR → FOR indica lo scopo o il motivo. ✗ responsible OF" },
+  { id:8,  s:"He is dependent ___ his parents financially.",   a:"on",    opts:["on","from","to","of"],     exp:"Schema: dependent/reliant/keen ON → ON indica dipendenza o appoggio su qualcosa. ✗ dependent FROM" },
+  { id:9,  s:"I'm tired ___ doing the same thing every day.",  a:"of",    opts:["of","from","at","with"],   exp:"Schema: tired/bored/ashamed/scared OF → OF lega l'aggettivo all'oggetto dell'emozione. ✗ tired FROM" },
+  { id:10, s:"She arrived ___ the airport two hours early.",   a:"at",    opts:["at","in","to","on"],       exp:"AT = punto preciso nello spazio (airport, station, hotel, office). ✗ arrived IN the airport (IN = città/paese)" },
+  { id:11, s:"He applied ___ a job at a tech company.",        a:"for",   opts:["for","to","at","in"],      exp:"Schema: apply/ask/search/wait FOR → FOR indica ciò che si vuole ottenere. ✗ apply TO a job" },
+  { id:12, s:"We need to focus ___ the main problem.",         a:"on",    opts:["on","at","in","to"],       exp:"Schema: focus/rely/depend/insist ON → ON indica il punto di appoggio. ✗ focus AT" },
+  { id:13, s:"She insisted ___ paying for dinner.",            a:"on",    opts:["on","in","at","for"],      exp:"Schema: insist/rely/depend/count ON → ON per ciò su cui ci si appoggia. ✗ insist IN" },
+  { id:14, s:"He is married ___ a doctor.",                    a:"to",    opts:["to","with","for","of"],    exp:"Married TO (non WITH) → TO indica direzione, il partner 'a cui' sei unito. ✗ married WITH" },
+  { id:15, s:"I'm looking forward ___ meeting you.",           a:"to",    opts:["to","for","at","about"],   exp:"Look forward TO + -ing → TO è qui preposizione, non parte dell'infinito! ✗ look forward FOR meeting" },
+  { id:16, s:"She succeeded ___ passing the exam.",            a:"in",    opts:["in","at","for","with"],    exp:"Schema: succeed/involve/result IN → IN indica l'ambito in cui si ottiene qualcosa. ✗ succeed AT" },
+  { id:17, s:"He apologised ___ being late.",                  a:"for",   opts:["for","about","at","of"],   exp:"Schema: apologise/thank/blame someone FOR → FOR indica la causa o il motivo. ✗ apologise ABOUT" },
+  { id:18, s:"We agreed ___ the terms of the contract.",       a:"on",    opts:["on","with","to","about"],  exp:"Agree ON (accordo su un punto specifico) vs agree WITH (concordare con qualcuno). ✗ agree ABOUT the terms" },
+  { id:19, s:"She is angry ___ him for no reason.",            a:"with",  opts:["with","at","about","for"], exp:"Angry WITH (persona) vs angry ABOUT (situazione/cosa). ✗ angry AT him (informale ma ok) vs angry FOR him ✗" },
+  { id:20, s:"I'm worried ___ the results of the test.",       a:"about", opts:["about","for","of","with"], exp:"Schema: worried/happy/upset/excited ABOUT → ABOUT per argomenti e situazioni. ✗ worried FOR the test" },
+  { id:21, s:"He is very kind ___ everyone he meets.",         a:"to",    opts:["to","with","for","of"],    exp:"Schema: kind/polite/rude/mean TO → TO indica verso chi è diretta l'azione. ✗ kind WITH" },
+  { id:22, s:"She spent all her money ___ clothes.",           a:"on",    opts:["on","for","at","with"],    exp:"Spend [tempo/denaro] ON → ON indica su cosa si spende. ✗ spend ON vs spend FOR clothes" },
+  { id:23, s:"I congratulated her ___ passing her driving test.", a:"on", opts:["on","for","at","about"],   exp:"Congratulate/compliment ON → ON indica il risultato celebrato. ✗ congratulate FOR" },
+  { id:24, s:"He is jealous ___ his colleague's success.",     a:"of",    opts:["of","about","from","with"], exp:"Schema: jealous/afraid/proud/guilty OF → OF lega aggettivo all'oggetto. ✗ jealous ABOUT" },
+  { id:25, s:"She is in charge ___ the whole project.",        a:"of",    opts:["of","for","at","with"],    exp:"In charge OF → OF indica ciò di cui si è responsabili. ✗ in charge FOR" },
+  { id:26, s:"He blamed his sister ___ breaking the vase.",    a:"for",   opts:["for","of","about","at"],   exp:"Blame someone FOR (something) → FOR = causa. ✗ blame FOR vs accuse OF (accuse OF = diverso!)" },
+  { id:27, s:"We rely ___ public transport every day.",        a:"on",    opts:["on","in","at","for"],      exp:"Schema: rely/depend/count/insist ON → ON = appoggio. ✗ rely IN" },
+  { id:28, s:"She is very skilled ___ negotiating deals.",     a:"at",    opts:["at","in","for","with"],    exp:"Schema: skilled/good/bad/brilliant AT → AT per abilità. ✗ skilled IN negotiating" },
+  { id:29, s:"I disagree ___ your conclusion about the data.", a:"with",  opts:["with","about","to","from"], exp:"Disagree WITH (persona/idea) → WITH indica il partner del disaccordo. ✗ disagree ABOUT (ok per argomenti)" },
+  { id:30, s:"He is addicted ___ social media.",               a:"to",    opts:["to","on","for","with"],    exp:"Schema: addicted/used/married/committed TO → TO indica la direzione dell'attaccamento. ✗ addicted ON" },
+  { id:31, s:"She is aware ___ the risks involved.",           a:"of",    opts:["of","about","with","for"], exp:"Schema: aware/scared/proud/ashamed OF → OF lega l'emozione al suo oggetto. ✗ aware ABOUT" },
+  { id:32, s:"They objected ___ the new proposal.",            a:"to",    opts:["to","against","about","with"], exp:"Object TO → TO indica ciò a cui ci si oppone. ✗ object AGAINST" },
+  { id:33, s:"He is very sensitive ___ criticism.",            a:"to",    opts:["to","about","with","of"],  exp:"Schema: sensitive/allergic/immune/used TO → TO indica verso cosa si reagisce. ✗ sensitive ABOUT (diverso!)" },
+  { id:34, s:"She suffers ___ migraines when she's stressed.", a:"from",  opts:["from","of","with","at"],   exp:"Suffer FROM (malattia/condizione) → FROM indica l'origine del problema. ✗ suffer WITH" },
+  { id:35, s:"I believe ___ the power of education.",          a:"in",    opts:["in","at","of","about"],    exp:"Believe IN → IN = credere nell'esistenza o nel valore. Believe someone (senza prep) = credere a qualcuno." },
+  { id:36, s:"He is committed ___ finishing the project.",     a:"to",    opts:["to","for","in","about"],   exp:"Schema: committed/dedicated/addicted/used TO → TO indica l'oggetto dell'impegno. ✗ committed FOR" },
+  { id:37, s:"She is very cautious ___ making promises.",      a:"about", opts:["about","of","with","in"],  exp:"Schema: cautious/worried/happy/excited ABOUT → ABOUT per argomenti e situazioni future. ✗ cautious OF" },
+  { id:38, s:"We were shocked ___ hearing the news.",          a:"at",    opts:["at","by","of","about"],    exp:"Shocked AT (reazione immediata) vs shocked BY (causa più formale). Es: shocked AT the price / shocked BY the news." },
+  { id:39, s:"He is qualified ___ the position of manager.",   a:"for",   opts:["for","to","at","in"],      exp:"Schema: qualified/ready/famous/responsible FOR → FOR indica lo scopo. ✗ qualified TO the position" },
+  { id:40, s:"I'm satisfied ___ the results we achieved.",     a:"with",  opts:["with","about","of","at"],  exp:"Satisfied WITH → WITH indica la cosa concreta con cui si è soddisfatti. ✗ satisfied ABOUT" },
+  { id:41, s:"She is suspicious ___ his motives.",             a:"of",    opts:["of","about","with","at"],  exp:"Schema: suspicious/afraid/proud OF → OF lega l'emozione all'oggetto. ✗ suspicious ABOUT" },
+  { id:42, s:"He is very loyal ___ his friends.",              a:"to",    opts:["to","with","for","of"],    exp:"Schema: loyal/kind/polite/married TO → TO indica verso chi è diretta la qualità. ✗ loyal WITH" },
+  { id:43, s:"I'm amazed ___ how quickly she learned.",        a:"at",    opts:["at","by","of","about"],    exp:"Amazed AT (stupore per una cosa specifica) vs amazed BY (la causa dello stupore). Entrambi corretti!" },
+  { id:44, s:"She is capable ___ managing the whole team.",    a:"of",    opts:["of","at","for","with"],    exp:"Schema: capable/guilty/ashamed/proud OF → OF + gerundio. ✗ capable AT" },
+  { id:45, s:"He is very keen ___ learning new skills.",       a:"on",    opts:["on","for","about","in"],   exp:"Schema: keen/dependent/insist ON → ON indica ciò su cui si è entusiasti o si insiste. ✗ keen ABOUT" },
+  { id:46, s:"We are satisfied ___ the outcome of the meeting.", a:"with", opts:["with","about","by","of"], exp:"Satisfied WITH → WITH per risultati concreti. Differenza: happy ABOUT (situazione) / satisfied WITH (risultato)." },
+  { id:47, s:"She contributed ___ the success of the project.", a:"to",   opts:["to","for","in","at"],      exp:"Contribute TO → TO indica la direzione del contributo. ✗ contribute IN" },
+  { id:48, s:"He is very generous ___ his time and money.",    a:"with",  opts:["with","in","of","at"],     exp:"Generous WITH (risorse: tempo, denaro) vs generous TO (persona). ✗ generous IN" },
+  { id:49, s:"I am fed up ___ waiting all the time.",          a:"with",  opts:["with","of","at","about"],  exp:"Fed up WITH → WITH indica la causa della noia/stanchezza. ✗ fed up OF" },
+  { id:50, s:"She is fond ___ classical music.",               a:"of",    opts:["of","about","with","for"], exp:"Fond OF → OF indica l'oggetto dell'affetto. ✗ fond ABOUT" },
+  { id:51, s:"He is allergic ___ dust and pollen.",            a:"to",    opts:["to","of","from","with"],   exp:"Schema: allergic/used/married/sensitive TO → TO indica verso cosa si reagisce. ✗ allergic FROM" },
+  { id:52, s:"I was disappointed ___ the quality of the product.", a:"with", opts:["with","about","by","of"], exp:"Disappointed WITH (risultato/cosa) vs disappointed IN (persona). Es: disappointed WITH the result / IN him." },
+  { id:53, s:"She is involved ___ several community projects.", a:"in",   opts:["in","with","at","for"],    exp:"Involved IN → IN = dentro un'attività o progetto. ✗ involved WITH (implica coinvolgimento personale diverso)" },
+  { id:54, s:"He is obsessed ___ getting everything perfect.", a:"with",  opts:["with","about","by","on"],  exp:"Obsessed WITH → WITH indica la cosa/persona con cui si è ossessionati. ✗ obsessed BY (ok ma meno comune)" },
+  { id:55, s:"I'm curious ___ how the story ends.",            a:"about", opts:["about","of","for","at"],   exp:"Schema: curious/excited/worried/upset ABOUT → ABOUT per argomenti e situazioni. ✗ curious OF" },
+  { id:56, s:"She is not used ___ waking up so early.",        a:"to",    opts:["to","at","for","with"],    exp:"Used TO + -ing (abitudine presente) → TO è preposizione! ✗ used TO wake up. Diverso da 'used to' passato." },
+  { id:57, s:"He is very good ___ explaining complex topics.", a:"at",    opts:["at","in","for","with"],    exp:"Schema: good/bad/skilled/talented/quick AT → AT per abilità specifiche. ✗ good IN" },
+  { id:58, s:"I was impressed ___ her presentation.",          a:"by",    opts:["by","with","at","of"],     exp:"Impressed BY (la causa dell'impressione) vs impressed WITH (più colloquiale). ✗ impressed FROM" },
+  { id:59, s:"She is dedicated ___ her work.",                 a:"to",    opts:["to","for","in","about"],   exp:"Schema: dedicated/committed/addicted/used TO → TO indica l'oggetto della dedizione. ✗ dedicated FOR" },
+  { id:60, s:"He was brought up ___ a strict family.",         a:"in",    opts:["in","by","with","at"],     exp:"Brought up IN (ambiente culturale/geografico) → IN per spazi e contesti. ✗ brought up BY a family ✗" },
+  { id:61, s:"I am very pleased ___ your progress.",           a:"with",  opts:["with","about","at","of"],  exp:"Pleased WITH → WITH indica la cosa concreta. Sinonimo di satisfied WITH. ✗ pleased ABOUT (più per situazioni)" },
+  { id:62, s:"She is fluent ___ three languages.",             a:"in",    opts:["in","at","with","for"],    exp:"Fluent IN [lingua] → IN indica il campo di padronanza. ✗ fluent AT Spanish" },
+  { id:63, s:"He is terrified ___ spiders.",                   a:"of",    opts:["of","from","at","about"],  exp:"Schema: terrified/afraid/proud/ashamed OF → OF lega l'emozione all'oggetto. ✗ terrified FROM" },
+  { id:64, s:"I was confused ___ the instructions.",           a:"by",    opts:["by","with","about","of"],  exp:"Confused BY (la causa della confusione) vs confused ABOUT (argomento su cui si è confusi). Entrambi ok!" },
+  { id:65, s:"She is very punctual ___ her appointments.",     a:"with",  opts:["with","at","about","in"],  exp:"Punctual WITH (pagamenti, scadenze) vs punctual FOR (appuntamenti). ✗ punctual AT" },
+  { id:66, s:"He is not aware ___ the problem.",               a:"of",    opts:["of","about","with","at"],  exp:"Schema: aware/scared/proud/ashamed OF → OF indica l'oggetto della consapevolezza. ✗ aware ABOUT" },
+  { id:67, s:"I'm very happy ___ the result of the experiment.", a:"with", opts:["with","about","at","of"], exp:"Happy WITH (risultato concreto) vs happy ABOUT (situazione). Es: happy WITH the answer / happy ABOUT the news." },
+  { id:68, s:"She is experienced ___ project management.",     a:"in",    opts:["in","at","with","for"],    exp:"Experienced IN [campo] → IN indica il settore di esperienza. ✗ experienced AT" },
+  { id:69, s:"He cares deeply ___ his community.",             a:"about", opts:["about","for","of","with"], exp:"Care ABOUT (tenerci a qualcosa) vs care FOR (prendersi cura di / gradire). Significati diversi!" },
+  { id:70, s:"I was astonished ___ his rudeness.",             a:"at",    opts:["at","by","of","about"],    exp:"Astonished AT (stupore per cosa specifica) vs astonished BY (causa più formale). Entrambi corretti!" },
+  { id:71, s:"She is very ambitious ___ her career.",          a:"about", opts:["about","for","with","in"], exp:"Schema: ambitious/excited/worried ABOUT → ABOUT per progetti futuri. ✗ ambitious FOR" },
+  { id:72, s:"He is brilliant ___ solving complex puzzles.",   a:"at",    opts:["at","in","for","with"],    exp:"Schema: good/skilled/brilliant/quick AT → AT per abilità. ✗ brilliant IN" },
+  { id:73, s:"I'm concerned ___ the rising unemployment rate.", a:"about", opts:["about","with","of","for"], exp:"Schema: concerned/worried/happy/excited ABOUT → ABOUT per situazioni. ✗ concerned FOR" },
+  { id:74, s:"She is very adaptable ___ change.",              a:"to",    opts:["to","with","for","of"],    exp:"Schema: adaptable/sensitive/immune/used TO → TO indica verso cosa ci si adatta. ✗ adaptable WITH" },
+  { id:75, s:"He is not accustomed ___ living alone.",         a:"to",    opts:["to","with","for","at"],    exp:"Schema: accustomed/used/addicted/married TO + -ing → TO è preposizione. ✗ accustomed WITH" },
+  { id:76, s:"I feel sorry ___ the inconvenience caused.",     a:"for",   opts:["for","about","of","with"], exp:"Sorry FOR (dispiacere per azione) vs sorry ABOUT (situazione). Es: sorry FOR the delay / sorry ABOUT that." },
+  { id:77, s:"She is very passionate ___ social justice.",     a:"about", opts:["about","for","in","of"],   exp:"Schema: passionate/excited/worried ABOUT → ABOUT per argomenti e cause. ✗ passionate FOR" },
+  { id:78, s:"He is hopeful ___ a positive outcome.",          a:"about", opts:["about","for","of","with"], exp:"Schema: hopeful/worried/excited/happy ABOUT → ABOUT per situazioni future. ✗ hopeful FOR" },
+  { id:79, s:"I'm very upset ___ what happened yesterday.",    a:"about", opts:["about","with","at","of"],  exp:"Schema: upset/worried/excited ABOUT → ABOUT per situazioni e eventi. ✗ upset WITH (indica persona)" },
+  { id:80, s:"She is in need ___ urgent medical attention.",   a:"of",    opts:["of","for","at","with"],    exp:"In need OF → OF indica ciò di cui si ha bisogno. ✗ in need FOR" },
+  { id:81, s:"He is very enthusiastic ___ the new proposal.",  a:"about", opts:["about","for","at","with"], exp:"Schema: enthusiastic/excited/worried/happy ABOUT → ABOUT per situazioni e proposte. ✗ enthusiastic FOR" },
+  { id:82, s:"I can rely ___ you to get it done.",             a:"on",    opts:["on","in","at","with"],     exp:"Schema: rely/depend/count/insist ON → ON = punto di appoggio. ✗ rely IN" },
+  { id:83, s:"She is very confident ___ her abilities.",       a:"in",    opts:["in","about","of","with"],  exp:"Confident IN (proprie capacità) vs confident ABOUT (situazione specifica). Sfumatura importante!" },
+  { id:84, s:"He is bored ___ doing the same routine.",        a:"with",  opts:["with","of","at","about"],  exp:"Bored WITH (noia duratura) vs bored BY (la causa specifica). ✗ bored OF (accettabile ma informale)" },
+  { id:85, s:"I'm not familiar ___ this part of the city.",    a:"with",  opts:["with","to","about","of"],  exp:"Schema: familiar/popular/in love/bored WITH → WITH indica connessione. ✗ familiar TO" },
+  { id:86, s:"She is very polite ___ everyone she speaks to.", a:"to",    opts:["to","with","at","for"],    exp:"Polite TO (verso persone) → TO indica verso chi è diretta la cortesia. ✗ polite WITH strangers" },
+  { id:87, s:"He is late ___ work again today.",               a:"for",   opts:["for","to","at","in"],      exp:"Late FOR [appuntamento/evento] → FOR indica ciò per cui si è in ritardo. ✗ late TO work" },
+  { id:88, s:"I am opposed ___ any form of discrimination.",   a:"to",    opts:["to","against","about","with"], exp:"Opposed TO → TO indica ciò a cui ci si oppone. Simile a object TO. ✗ opposed AGAINST" },
+  { id:89, s:"She is very grateful ___ all the support.",      a:"for",   opts:["for","of","about","with"], exp:"Schema: grateful/famous/responsible FOR → FOR indica la causa o il motivo. ✗ grateful ABOUT" },
+  { id:90, s:"He is terrified ___ making mistakes in public.", a:"of",    opts:["of","about","from","at"],  exp:"Schema: terrified/afraid/ashamed/proud OF → OF lega l'emozione all'oggetto. ✗ terrified ABOUT" },
+  { id:91, s:"I am very attached ___ my hometown.",            a:"to",    opts:["to","with","for","of"],    exp:"Schema: attached/committed/dedicated/married/used TO → TO indica l'oggetto dell'attaccamento. ✗ attached WITH" },
+  { id:92, s:"She is very strict ___ punctuality.",            a:"about", opts:["about","with","on","in"],  exp:"Strict ABOUT (su regole/principi) vs strict WITH (con persone). Es: strict ABOUT rules / strict WITH children." },
+  { id:93, s:"He is incapable ___ lying to people.",           a:"of",    opts:["of","from","at","with"],   exp:"Schema: incapable/ashamed/guilty/proud OF + -ing → OF + gerundio. ✗ incapable AT" },
+  { id:94, s:"I was astonished ___ his unexpected kindness.",  a:"by",    opts:["by","at","of","with"],     exp:"Astonished BY (causa formale) vs astonished AT (reazione immediata). Entrambi corretti, BY è più formale." },
+  { id:95, s:"She is very talented ___ playing the piano.",    a:"at",    opts:["at","in","for","with"],    exp:"Schema: talented/skilled/brilliant/quick AT → AT per abilità. ✗ talented IN" },
+  { id:96, s:"He complained ___ the noise coming from next door.", a:"about", opts:["about","of","at","for"], exp:"Complain ABOUT [cosa] → ABOUT per argomenti e situazioni. Complain TO [persona]. ✗ complain OF (formale/raro)" },
+  { id:97, s:"I'm very keen ___ trying new restaurants.",      a:"on",    opts:["on","for","about","in"],   exp:"Schema: keen/dependent/rely/insist ON → ON indica entusiasmo o dipendenza. ✗ keen ABOUT (ok per entusiasmo)" },
+  { id:98, s:"She is very active ___ her local community.",    a:"in",    opts:["in","at","with","for"],    exp:"Active IN [comunità/campo] → IN indica partecipazione in un contesto. ✗ active AT" },
+  { id:99, s:"He is very selective ___ who he spends time with.", a:"about", opts:["about","with","of","in"], exp:"Selective ABOUT → ABOUT per scelte e preferenze. ✗ selective WITH" },
+  { id:100,s:"I am looking forward ___ the holidays.",         a:"to",    opts:["to","for","about","at"],   exp:"Look forward TO + -ing → TO è preposizione (non infinito!). ✗ look forward FOR the holidays" },
+  { id:101,s:"She is very enthusiastic ___ her new role.",     a:"about", opts:["about","for","in","with"], exp:"Schema: enthusiastic/excited/worried ABOUT → ABOUT per situazioni e proposte. ✗ enthusiastic IN" },
+  { id:102,s:"He is afraid ___ commitment in relationships.",  a:"of",    opts:["of","from","about","with"], exp:"Schema: afraid/scared/terrified OF → OF lega l'emozione all'oggetto. ✗ afraid FROM" },
+  { id:103,s:"I'm not happy ___ the way this was handled.",    a:"about", opts:["about","with","of","at"],  exp:"Happy ABOUT (situazione) vs happy WITH (risultato concreto). Es: not happy ABOUT the process / WITH the outcome." },
+  { id:104,s:"She is qualified ___ the senior manager role.",  a:"for",   opts:["for","to","in","at"],      exp:"Schema: qualified/ready/responsible/famous FOR → FOR indica lo scopo. ✗ qualified TO" },
+  { id:105,s:"He is very bad ___ managing his time.",          a:"at",    opts:["at","in","with","for"],    exp:"Bad AT = opposto di good AT → AT per abilità. Lo schema è always adj. + AT per abilità. ✗ bad IN" },
+  { id:106,s:"The company is known ___ its excellent service.", a:"for",  opts:["for","by","of","as"],      exp:"Known FOR [qualità/prodotto] → FOR indica il motivo della fama. ✗ known BY" },
+  { id:107,s:"She dreams ___ becoming a professional singer.",  a:"of",   opts:["of","about","for","at"],   exp:"Dream OF + -ing (sogno come desiderio) → OF + gerundio. Dream ABOUT + -ing (sogno nel sonno). Significati diversi!" },
+  { id:108,s:"He succeeded ___ getting the job he wanted.",    a:"in",    opts:["in","at","with","for"],    exp:"Succeed IN + -ing → IN + gerundio. ✗ succeed AT (accettabile ma meno comune)" },
+  { id:109,s:"I'm thinking ___ changing my career.",           a:"of",    opts:["of","about","for","on"],   exp:"Think OF (idea immediata) vs think ABOUT (riflessione prolungata). Entrambi ok, sfumatura sottile." },
+  { id:110,s:"She is determined ___ making a difference.",     a:"to",    opts:["to","in","on","about"],    exp:"Determined TO + infinito → TO non è preposizione qui! Indica intenzione. ✗ determined IN" },
+  { id:111,s:"He is not cut out ___ this kind of work.",       a:"for",   opts:["for","to","in","at"],      exp:"Cut out FOR → FOR indica per cosa si è adatti. ✗ cut out TO" },
+  { id:112,s:"I am responsible ___ my own decisions.",         a:"for",   opts:["for","of","to","about"],   exp:"Responsible FOR → FOR indica l'ambito di responsabilità. ✗ responsible OF" },
+  { id:113,s:"She is dedicated ___ improving her English.",    a:"to",    opts:["to","in","for","on"],      exp:"Schema: dedicated/committed/addicted TO + -ing → TO è preposizione. ✗ dedicated FOR" },
+  { id:114,s:"He is very proud ___ what his children achieved.", a:"of",  opts:["of","about","for","with"], exp:"Schema: proud/ashamed/scared OF → OF lega l'emozione all'oggetto. ✗ proud ABOUT" },
+  { id:115,s:"I apologise ___ any inconvenience caused.",      a:"for",   opts:["for","about","of","to"],   exp:"Apologise FOR [causa] → FOR indica il motivo delle scuse. ✗ apologise ABOUT" },
+  { id:116,s:"She is eligible ___ a promotion this year.",     a:"for",   opts:["for","to","of","in"],      exp:"Eligible FOR → FOR indica ciò per cui si ha diritto. ✗ eligible TO" },
+  { id:117,s:"He is very critical ___ the new regulations.",   a:"of",    opts:["of","about","with","at"],  exp:"Critical OF → OF indica l'oggetto della critica. ✗ critical ABOUT" },
+  { id:118,s:"I'm very disappointed ___ his attitude.",        a:"with",  opts:["with","about","by","of"],  exp:"Disappointed WITH (risultato) vs disappointed IN (persona). Scegli in base all'oggetto!" },
+  { id:119,s:"She was angry ___ herself for making that mistake.", a:"with", opts:["with","at","about","of"], exp:"Angry WITH [persona] → WITH per persone. Angry ABOUT [situazione]. ✗ angry AT himself (ok in inglese americano)" },
+  { id:120,s:"He is very enthusiastic ___ outdoor sports.",    a:"about", opts:["about","for","in","with"], exp:"Schema: enthusiastic/excited/worried ABOUT → ABOUT per situazioni. ✗ enthusiastic FOR" },
+  { id:121,s:"I'm bored ___ watching TV every evening.",       a:"with",  opts:["with","of","at","by"],     exp:"Bored WITH (noia persistente) vs bored BY (causa della noia). ✗ bored OF (informale)" },
+  { id:122,s:"She is very popular ___ her colleagues.",        a:"with",  opts:["with","among","to","for"], exp:"Popular WITH [gruppo di persone] → WITH per gruppi. ✗ popular AMONG (ok ma più formale)" },
+  { id:123,s:"He is very patient ___ his children.",           a:"with",  opts:["with","to","for","about"], exp:"Patient WITH [persona] → WITH indica verso chi si ha pazienza. ✗ patient FOR" },
+  { id:124,s:"I'm not sure ___ the answer to this question.",  a:"about", opts:["about","of","with","on"],  exp:"Sure ABOUT (certezza su situazione, colloquiale) vs sure OF (certezza su fatto). Entrambi ok!" },
+  { id:125,s:"She is very skeptical ___ his intentions.",      a:"about", opts:["about","of","with","at"],  exp:"Skeptical ABOUT/OF → entrambi corretti. ABOUT = più colloquiale; OF = più formale." },
+  { id:126,s:"He is always late ___ paying his bills.",        a:"in",    opts:["in","for","with","at"],    exp:"Late IN + -ing (ritardo nel fare qualcosa) → IN + gerundio. ✗ late IN vs late FOR (appuntamento)" },
+  { id:127,s:"I'm very interested ___ ancient history.",       a:"in",    opts:["in","about","on","for"],   exp:"Schema: interested/involved/experienced IN → IN per argomenti e campi. ✗ interested ABOUT" },
+  { id:128,s:"She is not very comfortable ___ public speaking.", a:"with", opts:["with","in","about","at"], exp:"Comfortable WITH (agio con qualcosa) vs comfortable ABOUT (situazione). ✗ comfortable IN" },
+  { id:129,s:"He was astonished ___ the amount of work needed.", a:"at",  opts:["at","by","with","of"],     exp:"Astonished AT (cosa specifica) vs astonished BY (causa). Regola: stessa logica di shocked/amazed." },
+  { id:130,s:"I was very impressed ___ the quality of the food.", a:"by", opts:["by","with","at","of"],     exp:"Impressed BY (causa, più comune) vs impressed WITH (colloquiale). ✗ impressed FROM" },
+  { id:131,s:"She is very good ___ remembering names.",        a:"at",    opts:["at","in","for","with"],    exp:"Schema: good/bad/skilled/brilliant/quick AT → AT per tutte le abilità. ✗ good IN" },
+  { id:132,s:"He is very sensitive ___ other people's feelings.", a:"to", opts:["to","about","with","of"],  exp:"Schema: sensitive/allergic/immune/used TO → TO indica verso cosa si reagisce. ✗ sensitive ABOUT feelings (diverso!)" },
+  { id:133,s:"I'm very much in favour ___ the new policy.",    a:"of",    opts:["of","for","with","about"], exp:"In favour OF → OF indica ciò che si supporta. ✗ in favour FOR" },
+  { id:134,s:"She is not very good ___ dealing with stress.",  a:"at",    opts:["at","in","with","for"],    exp:"Schema: good/bad/skilled AT → AT per abilità. Regola universale per capacità. ✗ good IN" },
+  { id:135,s:"He is very frank ___ his opinions.",             a:"about", opts:["about","with","on","in"],  exp:"Frank ABOUT [argomento] → ABOUT per argomenti. Frank WITH [persona] → WITH per persone." },
+  { id:136,s:"I'm very worried ___ her health lately.",        a:"about", opts:["about","for","of","with"], exp:"Schema: worried/excited/happy ABOUT → ABOUT per situazioni. ✗ worried FOR" },
+  { id:137,s:"She is not very confident ___ her driving.",     a:"about", opts:["about","in","with","of"],  exp:"Confident ABOUT (situazione specifica) vs confident IN (proprie capacità). Sfumatura importante!" },
+  { id:138,s:"He is very good ___ keeping secrets.",           a:"at",    opts:["at","in","with","for"],    exp:"Schema: good/bad/skilled AT → AT per abilità. ✗ good IN keeping secrets" },
+  { id:139,s:"I'm really excited ___ starting my new job.",   a:"about", opts:["about","for","at","with"],  exp:"Schema: excited/happy/worried ABOUT → ABOUT per eventi futuri. ✗ excited FOR" },
+  { id:140,s:"She is not very happy ___ working weekends.",    a:"about", opts:["about","with","at","of"],  exp:"Happy ABOUT [situazione] → ABOUT per situazioni. ✗ happy WITH working weekends (lì = risultato)" },
+  { id:141,s:"He is very different ___ his brother.",          a:"from",  opts:["from","to","than","with"], exp:"Different FROM (standard in tutti i contesti). Different TO (ok in britannico). ✗ different THAN (americano, informale)" },
+  { id:142,s:"I'm very keen ___ the idea of living abroad.",   a:"on",    opts:["on","about","for","in"],   exp:"Schema: keen/dependent/rely ON → ON per entusiasmo/dipendenza. ✗ keen ABOUT (ok per entusiasmo generico)" },
+  { id:143,s:"She is very committed ___ her studies.",         a:"to",    opts:["to","for","in","about"],   exp:"Schema: committed/dedicated/addicted TO + -ing → TO è preposizione. ✗ committed FOR" },
+  { id:144,s:"He is not prepared ___ such a difficult exam.",  a:"for",   opts:["for","to","on","about"],   exp:"Prepared FOR → FOR indica ciò per cui ci si è preparati. ✗ prepared TO (TO introduce l'infinito, non preposizione)" },
+  { id:145,s:"I was very touched ___ her kind words.",         a:"by",    opts:["by","with","at","of"],     exp:"Touched BY (commosso dalla causa) → BY per la causa di un'emozione passiva. ✗ touched WITH" },
+  { id:146,s:"She is very popular ___ her students.",          a:"with",  opts:["with","among","to","for"], exp:"Popular WITH [persone/gruppo] → WITH per gruppi. ✗ popular AMONG (formale)" },
+  { id:147,s:"He is very passionate ___ his work.",            a:"about", opts:["about","for","in","with"], exp:"Schema: passionate/excited/worried ABOUT → ABOUT per argomenti/cause. ✗ passionate FOR" },
+  { id:148,s:"I'm very worried ___ the impact on the environment.", a:"about", opts:["about","for","of","with"], exp:"Schema: worried/excited/happy ABOUT → ABOUT per situazioni. ✗ worried FOR" },
+  { id:149,s:"She is not very impressed ___ his excuse.",      a:"by",    opts:["by","with","at","of"],     exp:"Impressed BY (più comune, formale) vs impressed WITH (colloquiale). ✗ impressed FROM" },
+  { id:150,s:"He is very dedicated ___ his craft.",            a:"to",    opts:["to","in","for","about"],   exp:"Schema: dedicated/committed TO → TO indica l'oggetto della dedizione. ✗ dedicated FOR" },
+  { id:151,s:"I'm not very good ___ saying no to people.",     a:"at",    opts:["at","in","with","for"],    exp:"Schema: good/bad/skilled AT → AT per abilità. ✗ good IN" },
+  { id:152,s:"She is very serious ___ achieving her goals.",   a:"about", opts:["about","in","with","for"], exp:"Serious ABOUT [obiettivo] → ABOUT per argomenti e intenzioni. ✗ serious FOR" },
+  { id:153,s:"He is very anxious ___ the test results.",       a:"about", opts:["about","for","of","with"], exp:"Schema: anxious/worried/excited ABOUT → ABOUT per eventi imminenti. ✗ anxious FOR" },
+  { id:154,s:"I'm very grateful ___ your support and advice.", a:"for",   opts:["for","of","about","with"], exp:"Schema: grateful/responsible/famous FOR → FOR indica il motivo. ✗ grateful ABOUT" },
+  { id:155,s:"She is not very familiar ___ modern technology.", a:"with",  opts:["with","to","about","in"], exp:"Schema: familiar/popular/in love WITH → WITH per connessione. ✗ familiar TO (solo in alcuni dialetti)" },
+  { id:156,s:"He is very interested ___ renewable energy.",    a:"in",    opts:["in","about","on","for"],   exp:"Schema: interested/involved/experienced IN → IN per campi e argomenti. ✗ interested ABOUT" },
+  { id:157,s:"I'm very excited ___ the prospect of travelling.", a:"about", opts:["about","for","at","with"], exp:"Schema: excited/happy/worried ABOUT → ABOUT per situazioni future. ✗ excited FOR" },
+  { id:158,s:"She is very skilled ___ managing difficult situations.", a:"at", opts:["at","in","with","for"], exp:"Schema: skilled/good/bad/quick AT → AT per abilità. ✗ skilled IN" },
+  { id:159,s:"He is not very comfortable ___ accepting criticism.", a:"with", opts:["with","about","at","in"], exp:"Comfortable WITH [situazione/cosa] → WITH indica connessione. ✗ comfortable ABOUT (ok ma per situazione più astratta)" },
+  { id:160,s:"I'm looking forward ___ the weekend.",           a:"to",    opts:["to","for","about","at"],   exp:"Look forward TO + -ing → TO è preposizione! ✗ look forward FOR" },
+  { id:161,s:"She is very conscious ___ her appearance.",      a:"of",    opts:["of","about","with","at"],  exp:"Conscious OF → OF indica ciò di cui si è consapevoli. ✗ conscious ABOUT (ok colloquialmente)" },
+  { id:162,s:"He is very fond ___ spicy food.",                a:"of",    opts:["of","about","with","for"], exp:"Fond OF → OF indica l'oggetto dell'affetto. ✗ fond ABOUT" },
+  { id:163,s:"I'm not very happy ___ the outcome of the vote.", a:"with",  opts:["with","about","at","of"], exp:"Happy WITH [risultato concreto] vs happy ABOUT [situazione]. ✗ happy OF" },
+  { id:164,s:"She is very suspicious ___ his sudden generosity.", a:"of",  opts:["of","about","with","at"], exp:"Schema: suspicious/afraid/proud/ashamed OF → OF lega l'emozione all'oggetto. ✗ suspicious ABOUT" },
+  { id:165,s:"He is very proud ___ his country's heritage.",   a:"of",    opts:["of","about","for","with"], exp:"Schema: proud/ashamed/scared OF → OF lega l'emozione all'oggetto. ✗ proud ABOUT" },
+  { id:166,s:"I'm very worried ___ the rise in living costs.", a:"about", opts:["about","for","of","with"], exp:"Schema: worried/excited/happy ABOUT → ABOUT per situazioni. ✗ worried FOR" },
+  { id:167,s:"She is totally absorbed ___ her new book.",      a:"in",    opts:["in","by","with","at"],     exp:"Absorbed IN [attività] → IN indica immersione totale in qualcosa. ✗ absorbed BY (ok ma meno comune)" },
+  { id:168,s:"He is very quick ___ picking up new languages.", a:"at",    opts:["at","in","with","for"],    exp:"Schema: good/bad/skilled/quick AT → AT per abilità e velocità. ✗ quick IN" },
+  { id:169,s:"I was very surprised ___ her sudden decision.",  a:"by",    opts:["by","at","with","of"],     exp:"Surprised BY (la causa) vs surprised AT (reazione immediata). Entrambi ok! ✗ surprised FROM" },
+  { id:170,s:"She is very optimistic ___ her career prospects.", a:"about", opts:["about","for","of","with"], exp:"Schema: optimistic/worried/excited ABOUT → ABOUT per situazioni future. ✗ optimistic FOR" },
+  { id:171,s:"He is very knowledgeable ___ European history.", a:"about", opts:["about","in","on","with"],  exp:"Knowledgeable ABOUT [argomento] → ABOUT per conoscenza di argomenti. ✗ knowledgeable IN (ok per campi formali)" },
+  { id:172,s:"I'm very concerned ___ the lack of transparency.", a:"about", opts:["about","with","of","for"], exp:"Schema: concerned/worried/happy ABOUT → ABOUT per situazioni. ✗ concerned FOR" },
+  { id:173,s:"She has always been interested ___ astronomy.",  a:"in",    opts:["in","about","on","for"],   exp:"Schema: interested/involved/experienced IN → IN per argomenti e campi. ✗ interested ABOUT" },
+  { id:174,s:"He is very talented ___ writing short stories.", a:"at",    opts:["at","in","for","with"],    exp:"Schema: talented/skilled/good/quick AT → AT per abilità. ✗ talented IN" },
+  { id:175,s:"I'm not very keen ___ watching horror films.",   a:"on",    opts:["on","about","for","in"],   exp:"Schema: keen/dependent ON → ON per entusiasmo o dipendenza. ✗ keen ABOUT (ok per entusiasmo generico)" },
+  { id:176,s:"She is very independent ___ her family.",        a:"of",    opts:["of","from","with","about"], exp:"Independent OF → OF indica rispetto a chi/cosa si è indipendenti. ✗ independent FROM (ok in alcuni contesti)" },
+  { id:177,s:"He is very good ___ thinking outside the box.",  a:"at",    opts:["at","in","for","with"],    exp:"Schema: good/bad/skilled AT → AT per abilità. ✗ good IN" },
+  { id:178,s:"I'm very enthusiastic ___ the new initiative.",  a:"about", opts:["about","for","in","with"], exp:"Schema: enthusiastic/excited/worried ABOUT → ABOUT per situazioni e proposte. ✗ enthusiastic FOR" },
+  { id:179,s:"She is very aware ___ the environmental impact.", a:"of",   opts:["of","about","with","at"],  exp:"Schema: aware/scared/proud OF → OF lega l'aggettivo all'oggetto. ✗ aware ABOUT" },
+  { id:180,s:"He is very reliant ___ others for motivation.",  a:"on",    opts:["on","upon","in","from"],   exp:"Reliant ON → ON indica dipendenza. Simile a: dependent/rely ON. ✗ reliant FROM" },
+  { id:181,s:"I'm very hopeful ___ a quick recovery.",         a:"about", opts:["about","for","of","in"],   exp:"Schema: hopeful/worried/excited ABOUT → ABOUT per situazioni future. ✗ hopeful FOR" },
+  { id:182,s:"She is very confident ___ making the right call.", a:"about", opts:["about","in","of","with"], exp:"Confident ABOUT [decisione/situazione] vs confident IN [capacità]. Scegli in base all'oggetto!" },
+  { id:183,s:"He is very anxious ___ meeting new people.",     a:"about", opts:["about","of","with","at"],  exp:"Schema: anxious/worried/excited ABOUT → ABOUT per eventi imminenti. ✗ anxious OF" },
+  { id:184,s:"I'm very suspicious ___ his sudden change of heart.", a:"of", opts:["of","about","with","at"], exp:"Schema: suspicious/afraid/ashamed OF → OF lega l'emozione all'oggetto. ✗ suspicious ABOUT" },
+  { id:185,s:"She is very confident ___ herself and her choices.", a:"in", opts:["in","about","of","with"],  exp:"Confident IN [proprie capacità/squadra] vs confident ABOUT [situazione]. Scegli in base all'oggetto!" },
+  { id:186,s:"He is very passionate ___ environmental issues.", a:"about", opts:["about","for","in","with"], exp:"Schema: passionate/excited/worried ABOUT → ABOUT per argomenti e cause. ✗ passionate FOR" },
+  { id:187,s:"I'm very satisfied ___ the progress I've made.", a:"with",  opts:["with","about","of","at"],  exp:"Satisfied WITH [risultato concreto] → WITH per risultati. ✗ satisfied ABOUT" },
+  { id:188,s:"She is very reluctant ___ accept any help.",     a:"to",    opts:["to","about","in","of"],    exp:"Reluctant TO + infinito → TO introduce l'infinito (non è preposizione). ✗ reluctant ABOUT accepting" },
+  { id:189,s:"He is very open ___ new ideas and suggestions.", a:"to",    opts:["to","about","for","with"],  exp:"Open TO [idee/suggerimenti] → TO indica verso cosa ci si apre. ✗ open FOR" },
+  { id:190,s:"I'm very curious ___ what she said to him.",     a:"about", opts:["about","of","for","at"],   exp:"Schema: curious/worried/excited ABOUT → ABOUT per argomenti e situazioni. ✗ curious OF" },
+  { id:191,s:"She is not very proud ___ what she did.",        a:"of",    opts:["of","about","for","with"], exp:"Schema: proud/ashamed/scared OF → OF lega l'emozione all'oggetto. Funziona anche in negativo. ✗ proud ABOUT" },
+  { id:192,s:"He is very uncomfortable ___ discussing money.", a:"with",  opts:["with","about","at","in"],  exp:"Uncomfortable WITH [cosa/situazione] → WITH indica connessione. ✗ uncomfortable ABOUT (ok ma più vago)" },
+  { id:193,s:"I'm completely absorbed ___ this documentary.",  a:"in",    opts:["in","by","with","at"],     exp:"Absorbed IN [attività] → IN indica immersione completa. ✗ absorbed BY" },
+  { id:194,s:"She is very experienced ___ handling complaints.", a:"in",  opts:["in","at","with","for"],    exp:"Experienced IN [campo] → IN per aree professionali. ✗ experienced AT" },
+  { id:195,s:"He is very much in love ___ her.",               a:"with",  opts:["with","of","for","about"], exp:"In love WITH → WITH è obbligatorio. ✗ in love OF / ✗ in love FOR" },
+  { id:196,s:"I'm very concerned ___ the quality of the work.", a:"about", opts:["about","with","of","for"], exp:"Schema: concerned/worried/happy ABOUT → ABOUT per situazioni. ✗ concerned FOR" },
+  { id:197,s:"She is very realistic ___ her expectations.",    a:"about", opts:["about","with","of","in"],  exp:"Realistic ABOUT [aspettative] → ABOUT per argomenti e situazioni. ✗ realistic WITH" },
+  { id:198,s:"He is completely devoted ___ his family.",       a:"to",    opts:["to","for","in","about"],   exp:"Schema: devoted/committed/dedicated/addicted TO → TO indica l'oggetto della dedizione. ✗ devoted FOR" },
+  { id:199,s:"I'm very upset ___ being excluded from the meeting.", a:"about", opts:["about","with","at","of"], exp:"Schema: upset/worried/excited ABOUT → ABOUT per situazioni e decisioni. ✗ upset WITH (indica persona)" },
+  { id:200,s:"She is very excited ___ her upcoming wedding.",  a:"about", opts:["about","for","at","with"], exp:"Schema: excited/happy/worried ABOUT → ABOUT per eventi futuri o imminenti. ✗ excited FOR" },
+];
+
+
+// ═══════════════════════════════════════════════════════════════════════
+// PHRASAL VERBS DATABASE — 100 entries
+// 50 Work & Business · 50 Daily Life
+// Fill-in-the-blank format: same engine as collocations
+// ═══════════════════════════════════════════════════════════════════════
+const PV = [
+  // ── WORK & BUSINESS ─────────────────────────────────────────────────
+  { id:1,  it:"Il team si fa carico di un nuovo cliente importante.",                    en:"The team takes on a new important client.",                                  cat:"Work & Business", lv:"B1", colloc_en:"takes on",             colloc_it:"si fa carico di" },
+  { id:2,  it:"Sara consegna il rapporto prima della scadenza.",                         en:"Sara hands in her report before the deadline.",                             cat:"Work & Business", lv:"B1", colloc_en:"hands in",             colloc_it:"consegna/presenta" },
+  { id:3,  it:"Il team porta avanti un'analisi approfondita del mercato.",               en:"The team carries out a thorough market analysis.",                          cat:"Work & Business", lv:"B2", colloc_en:"carries out",           colloc_it:"porta avanti/esegue" },
+  { id:4,  it:"I soci fondano una startup innovativa nel settore tech.",                 en:"The partners set up an innovative tech startup.",                           cat:"Work & Business", lv:"B1", colloc_en:"set up",               colloc_it:"fondano/avviano" },
+  { id:5,  it:"La manager propone un nuovo piano di sviluppo al consiglio.",             en:"The manager puts forward a new development plan to the board.",             cat:"Work & Business", lv:"B2", colloc_en:"puts forward",          colloc_it:"propone/presenta" },
+  { id:6,  it:"La riunione viene annullata a causa di un imprevisto.",                  en:"The meeting is called off due to an unexpected issue.",                     cat:"Work & Business", lv:"B1", colloc_en:"called off",            colloc_it:"annullata" },
+  { id:7,  it:"Il responsabile solleva una questione importante durante la riunione.",   en:"The manager brings up an important issue during the meeting.",              cat:"Work & Business", lv:"B2", colloc_en:"brings up",             colloc_it:"solleva/introduce" },
+  { id:8,  it:"Il team esamina i dati finanziari prima della presentazione.",            en:"The team goes over the financial data before the presentation.",            cat:"Work & Business", lv:"B2", colloc_en:"goes over",             colloc_it:"esamina/rivede" },
+  { id:9,  it:"La responsabile dà seguito al reclamo del cliente entro 24 ore.",        en:"The manager follows up on the client's complaint within 24 hours.",         cat:"Work & Business", lv:"B2", colloc_en:"follows up on",          colloc_it:"dà seguito a" },
+  { id:10, it:"Il team elabora un'idea originale per il lancio del prodotto.",          en:"The team comes up with an original idea for the product launch.",           cat:"Work & Business", lv:"B2", colloc_en:"comes up with",          colloc_it:"elabora/trova" },
+  { id:11, it:"Il responsabile gestisce le richieste difficili con professionalità.",    en:"The manager deals with difficult requests professionally.",                  cat:"Work & Business", lv:"B1", colloc_en:"deals with",            colloc_it:"gestisce/si occupa di" },
+  { id:12, it:"L'azienda esaurisce il budget prima della fine dell'anno.",              en:"The company runs out of budget before the end of the year.",                cat:"Work & Business", lv:"B1", colloc_en:"runs out of",            colloc_it:"esaurisce" },
+  { id:13, it:"L'assistente compila il modulo per conto del dirigente.",                en:"The assistant fills in the form on behalf of the manager.",                 cat:"Work & Business", lv:"A2", colloc_en:"fills in",              colloc_it:"compila" },
+  { id:14, it:"Il responsabile risolve il problema tecnico in poco tempo.",              en:"The manager sorts out the technical problem quickly.",                      cat:"Work & Business", lv:"B1", colloc_en:"sorts out",             colloc_it:"risolve/sistema" },
+  { id:15, it:"La responsabile IT mette per iscritto tutte le specifiche del progetto.", en:"The IT manager writes up all the project specifications.",                 cat:"Work & Business", lv:"B2", colloc_en:"writes up",             colloc_it:"mette per iscritto/redige" },
+  { id:16, it:"Il chairman si dimette dopo lo scandalo finanziario.",                   en:"The chairman steps down after the financial scandal.",                      cat:"Work & Business", lv:"C1", colloc_en:"steps down",            colloc_it:"si dimette" },
+  { id:17, it:"Una multinazionale rileva la startup dopo tre anni di attività.",        en:"A multinational takes over the startup after three years.",                 cat:"Work & Business", lv:"C1", colloc_en:"takes over",            colloc_it:"rileva/subentra a" },
+  { id:18, it:"Il governo introduce nuovi incentivi per le imprese innovative.",         en:"The government brings in new incentives for innovative businesses.",        cat:"Work & Business", lv:"C1", colloc_en:"brings in",             colloc_it:"introduce/porta" },
+  { id:19, it:"L'azienda lancia il nuovo servizio su tutti i mercati europei.",         en:"The company rolls out the new service across all European markets.",        cat:"Work & Business", lv:"C1", colloc_en:"rolls out",             colloc_it:"lancia/implementa" },
+  { id:20, it:"Il direttore posticipa la riunione alla settimana successiva.",          en:"The director puts off the meeting until the following week.",               cat:"Work & Business", lv:"B1", colloc_en:"puts off",              colloc_it:"posticipa/rimanda" },
+  { id:21, it:"Il CFO riduce le spese di marketing del trenta percento.",              en:"The CFO cuts back on marketing expenses by thirty percent.",                cat:"Work & Business", lv:"B2", colloc_en:"cuts back on",           colloc_it:"riduce/taglia" },
+  { id:22, it:"Il consulente esamina il problema prima di proporre una soluzione.",      en:"The consultant looks into the problem before proposing a solution.",        cat:"Work & Business", lv:"B2", colloc_en:"looks into",            colloc_it:"esamina/indaga" },
+  { id:23, it:"L'analista analizza i dati in dettaglio per trovare le cause.",          en:"The analyst breaks down the data in detail to find the causes.",            cat:"Work & Business", lv:"B2", colloc_en:"breaks down",           colloc_it:"analizza/scompone" },
+  { id:24, it:"Il team costruisce una solida base di clienti nel tempo.",               en:"The team builds up a solid client base over time.",                         cat:"Work & Business", lv:"B2", colloc_en:"builds up",             colloc_it:"costruisce/accumula" },
+  { id:25, it:"Il candidato rifiuta la proposta di lavoro per motivi personali.",       en:"The candidate turns down the job offer for personal reasons.",              cat:"Work & Business", lv:"B1", colloc_en:"turns down",            colloc_it:"rifiuta" },
+  { id:26, it:"Il responsabile contatta i clienti inattivi per riattivare i rapporti.", en:"The manager reaches out to inactive clients to reactivate the relationship.", cat:"Work & Business", lv:"B2", colloc_en:"reaches out to",        colloc_it:"contatta/si rivolge a" },
+  { id:27, it:"L'azienda si espande nel settore dell'energia rinnovabile.",             en:"The company branches out into the renewable energy sector.",               cat:"Work & Business", lv:"C1", colloc_en:"branches out into",      colloc_it:"si espande in" },
+  { id:28, it:"Il manager si esaurisce lavorando settanta ore a settimana.",            en:"The manager burns out working seventy hours a week.",                      cat:"Work & Business", lv:"B2", colloc_en:"burns out",             colloc_it:"si esaurisce/crolla" },
+  { id:29, it:"Giulia si distingue dalla concorrenza grazie alla sua creatività.",      en:"Giulia stands out from the competition thanks to her creativity.",          cat:"Work & Business", lv:"B2", colloc_en:"stands out",            colloc_it:"si distingue/spicca" },
+  { id:30, it:"Il direttore approva il progetto prima dell'invio al cliente.",          en:"The director signs off on the project before sending it to the client.",    cat:"Work & Business", lv:"C1", colloc_en:"signs off on",          colloc_it:"approva/da il via libera" },
+  { id:31, it:"Il team recupera il ritardo accumulato durante le vacanze.",            en:"The team catches up on the backlog that built up during the holidays.",     cat:"Work & Business", lv:"B2", colloc_en:"catches up on",          colloc_it:"recupera/colma" },
+  { id:32, it:"L'azienda elimina gradualmente i vecchi modelli dal catalogo.",          en:"The company phases out the old models from its catalogue.",                 cat:"Work & Business", lv:"C1", colloc_en:"phases out",            colloc_it:"elimina gradualmente" },
+  { id:33, it:"Il team di vendita accede al CRM ogni mattina per aggiornare i dati.",  en:"The sales team logs into the CRM every morning to update the data.",       cat:"Work & Business", lv:"A2", colloc_en:"logs into",             colloc_it:"accede a/entra in" },
+  { id:34, it:"Il responsabile fa un aggiornamento veloce con il team ogni mattina.",  en:"The manager checks in with the team every morning for a quick update.",    cat:"Work & Business", lv:"B1", colloc_en:"checks in with",         colloc_it:"fa un aggiornamento con" },
+  { id:35, it:"Il team stenta a stare al passo con i rapidi cambiamenti del settore.", en:"The team struggles to keep up with the rapid changes in the industry.",    cat:"Work & Business", lv:"B2", colloc_en:"keep up with",           colloc_it:"stare al passo con" },
+  { id:36, it:"L'azienda resta indietro rispetto ai principali concorrenti.",           en:"The company falls behind its main competitors.",                            cat:"Work & Business", lv:"B2", colloc_en:"falls behind",           colloc_it:"resta indietro rispetto a" },
+  { id:37, it:"Il progetto occupa gran parte delle risorse del team da mesi.",         en:"The project takes up most of the team's resources for months.",            cat:"Work & Business", lv:"B2", colloc_en:"takes up",              colloc_it:"occupa/assorbe" },
+  { id:38, it:"Il direttore passa le responsabilità al suo vice durante la trasferta.", en:"The director passes on responsibilities to his deputy during the trip.",   cat:"Work & Business", lv:"B2", colloc_en:"passes on",             colloc_it:"passa/trasferisce" },
+  { id:39, it:"Il team riesce a completare il progetto impossibile contro ogni aspettativa.", en:"The team pulls off the impossible project against all expectations.", cat:"Work & Business", lv:"C1", colloc_en:"pulls off",             colloc_it:"riesce a fare/porta a termine" },
+  { id:40, it:"La nuova direttrice guida il dipartimento con grande determinazione.",   en:"The new director heads up the department with great determination.",        cat:"Work & Business", lv:"B2", colloc_en:"heads up",              colloc_it:"guida/dirige" },
+  { id:41, it:"I negoziatori appianano le differenze e raggiungono un accordo.",       en:"The negotiators iron out their differences and reach an agreement.",        cat:"Work & Business", lv:"C1", colloc_en:"iron out",              colloc_it:"appianano/risolvono" },
+  { id:42, it:"Il responsabile restringe le opzioni a sole tre candidate.",             en:"The manager narrows down the options to just three candidates.",            cat:"Work & Business", lv:"B2", colloc_en:"narrows down",           colloc_it:"restringe/riduce" },
+  { id:43, it:"Il comitato valuta i pro e i contro di ogni soluzione proposta.",       en:"The committee weighs up the pros and cons of each proposed solution.",     cat:"Work & Business", lv:"C1", colloc_en:"weighs up",             colloc_it:"valuta/soppesa" },
+  { id:44, it:"La responsabile delinea una strategia dettagliata per i prossimi mesi.", en:"The manager maps out a detailed strategy for the next few months.",        cat:"Work & Business", lv:"C1", colloc_en:"maps out",              colloc_it:"delinea/pianifica" },
+  { id:45, it:"Il team finalmente conclude le trattative dopo settimane difficili.",    en:"The team finally wraps up the negotiations after several tough weeks.",     cat:"Work & Business", lv:"B2", colloc_en:"wraps up",              colloc_it:"conclude/chiude" },
+  { id:46, it:"Il responsabile supporta la proposta con dati concreti e convincenti.", en:"The manager backs up the proposal with concrete, convincing data.",         cat:"Work & Business", lv:"B2", colloc_en:"backs up",              colloc_it:"supporta/rafforza" },
+  { id:47, it:"Il dirigente perde le opportunità di mercato rimandando le decisioni.",  en:"The executive misses out on market opportunities by putting off decisions.", cat:"Work & Business", lv:"C1", colloc_en:"misses out on",         colloc_it:"perde/si lascia sfuggire" },
+  { id:48, it:"Il project manager si fa avanti per guidare il progetto più difficile.", en:"The project manager steps up to lead the most challenging project.",       cat:"Work & Business", lv:"B2", colloc_en:"steps up",              colloc_it:"si fa avanti/si impegna di più" },
+  { id:49, it:"L'analista supporta le sue conclusioni con tre diversi dataset.",       en:"The analyst backs up her conclusions with three different datasets.",       cat:"Work & Business", lv:"B2", colloc_en:"backs up",              colloc_it:"supporta con prove" },
+  { id:50, it:"Il team fa brainstorming e trova una soluzione innovativa al problema.", en:"The team brainstorms and comes up with an innovative solution to the problem.", cat:"Work & Business", lv:"B2", colloc_en:"comes up with",      colloc_it:"trova/elabora" },
+
+  // ── DAILY LIFE ────────────────────────────────────────────────────────
+  { id:51, it:"Marco rinuncia al progetto dopo settimane di difficoltà.",               en:"Marco gives up on the project after weeks of difficulty.",                  cat:"Daily Life", lv:"B1", colloc_en:"gives up on",           colloc_it:"rinuncia a" },
+  { id:52, it:"Anna si prende cura della nonna anziana ogni fine settimana.",           en:"Anna looks after her elderly grandmother every weekend.",                   cat:"Daily Life", lv:"A2", colloc_en:"looks after",            colloc_it:"si prende cura di" },
+  { id:53, it:"La coppia si lascia dopo tre anni di relazione.",                        en:"The couple breaks up after three years together.",                          cat:"Daily Life", lv:"B1", colloc_en:"breaks up",             colloc_it:"si lascia" },
+  { id:54, it:"I due amici si riconciliano dopo una discussione accesa.",               en:"The two friends make up after a heated argument.",                          cat:"Daily Life", lv:"B1", colloc_en:"make up",               colloc_it:"si riconciliano" },
+  { id:55, it:"Pietro va a prendere i bambini a scuola ogni pomeriggio.",              en:"Pietro picks up the children from school every afternoon.",                 cat:"Daily Life", lv:"A2", colloc_en:"picks up",              colloc_it:"va a prendere" },
+  { id:56, it:"Giulia porta i bambini a scuola e poi va a lavorare.",                  en:"Giulia drops the children off at school and then goes to work.",            cat:"Daily Life", lv:"A2", colloc_en:"drops the children off", colloc_it:"porta/lascia" },
+  { id:57, it:"Marco trascorre il sabato con gli amici al parco.",                     en:"Marco hangs out with his friends in the park on Saturday.",                 cat:"Daily Life", lv:"A2", colloc_en:"hangs out with",          colloc_it:"trascorre tempo con" },
+  { id:58, it:"Sara si aggiorna con la sua amica dopo mesi di lontananza.",            en:"Sara catches up with her friend after months apart.",                       cat:"Daily Life", lv:"B1", colloc_en:"catches up with",        colloc_it:"si aggiorna con" },
+  { id:59, it:"La famiglia mangia fuori per festeggiare il compleanno di Anna.",       en:"The family eats out to celebrate Anna's birthday.",                         cat:"Daily Life", lv:"A2", colloc_en:"eats out",              colloc_it:"mangia fuori" },
+  { id:60, it:"Luca si allena in palestra tre volte a settimana.",                     en:"Luca works out at the gym three times a week.",                             cat:"Daily Life", lv:"A2", colloc_en:"works out",             colloc_it:"si allena" },
+  { id:61, it:"Pietro rimane sveglio fino alle due per finire il libro.",              en:"Pietro stays up until two in the morning to finish the book.",              cat:"Daily Life", lv:"B1", colloc_en:"stays up",              colloc_it:"rimane sveglio" },
+  { id:62, it:"Anna continua nonostante le difficoltà e alla fine riesce.",            en:"Anna carries on despite the difficulties and eventually succeeds.",          cat:"Daily Life", lv:"B1", colloc_en:"carries on",            colloc_it:"continua/persevera" },
+  { id:63, it:"Giulia si calma e riesce a ragionare con più lucidità.",               en:"Giulia calms down and manages to think more clearly.",                      cat:"Daily Life", lv:"B1", colloc_en:"calms down",            colloc_it:"si calma" },
+  { id:64, it:"Marco delude il suo migliore amico non presentandosi all'appuntamento.", en:"Marco lets his best friend down by not showing up to their meeting.",      cat:"Daily Life", lv:"B2", colloc_en:"lets his best friend down", colloc_it:"delude" },
+  { id:65, it:"L'amica si presenta all'improvviso senza avvisare prima.",              en:"The friend shows up unexpectedly without calling ahead.",                   cat:"Daily Life", lv:"B1", colloc_en:"shows up",              colloc_it:"si presenta/arriva" },
+  { id:66, it:"Pietro cresce in una piccola città di provincia nel Sud Italia.",       en:"Pietro grows up in a small town in southern Italy.",                        cat:"Daily Life", lv:"A2", colloc_en:"grows up",              colloc_it:"cresce" },
+  { id:67, it:"Sara ripulisce la casa prima dell'arrivo degli ospiti importanti.",     en:"Sara cleans up the house before the important guests arrive.",              cat:"Daily Life", lv:"A2", colloc_en:"cleans up",             colloc_it:"ripulisce/riordina" },
+  { id:68, it:"Marco cerca una parola nuova sul dizionario online ogni giorno.",       en:"Marco looks up a new word in the online dictionary every day.",             cat:"Daily Life", lv:"A2", colloc_en:"looks up",              colloc_it:"cerca/consulta" },
+  { id:69, it:"Giulia si ritrova a vivere in un paese straniero per caso.",            en:"Giulia ends up living in a foreign country by chance.",                     cat:"Daily Life", lv:"B1", colloc_en:"ends up",               colloc_it:"si ritrova/finisce per" },
+  { id:70, it:"Anna esaurisce la pazienza dopo ore di attesa al telefono.",            en:"Anna runs out of patience after hours of waiting on hold.",                 cat:"Daily Life", lv:"B1", colloc_en:"runs out of",            colloc_it:"esaurisce" },
+  { id:71, it:"Pietro si libera di molti oggetti inutili durante il trasloco.",        en:"Pietro gets rid of many useless objects during the move.",                  cat:"Daily Life", lv:"B1", colloc_en:"gets rid of",            colloc_it:"si libera di/elimina" },
+  { id:72, it:"La famiglia si imbatte nel vecchio amico di scuola per strada.",        en:"The family runs into their old school friend on the street.",               cat:"Daily Life", lv:"B1", colloc_en:"runs into",             colloc_it:"si imbatte in/incontra per caso" },
+  { id:73, it:"Marco torna i libri presi in prestito alla biblioteca.",                en:"Marco gives back the books he borrowed to the library.",                    cat:"Daily Life", lv:"A2", colloc_en:"gives back",            colloc_it:"restituisce/riporta" },
+  { id:74, it:"Giulia affronta un periodo difficile con grande forza d'animo.",        en:"Giulia goes through a difficult period with great strength of mind.",        cat:"Daily Life", lv:"B2", colloc_en:"goes through",           colloc_it:"affronta/attraversa" },
+  { id:75, it:"Anna supera il dolore della perdita con l'aiuto della famiglia.",       en:"Anna gets over the pain of loss with the help of her family.",              cat:"Daily Life", lv:"B2", colloc_en:"gets over",             colloc_it:"supera/si riprende da" },
+  { id:76, it:"Pietro fa il pieno del serbatoio prima di partire per il viaggio.",    en:"Pietro fills up the tank before setting off on the trip.",                  cat:"Daily Life", lv:"A2", colloc_en:"fills up",              colloc_it:"fa il pieno/riempie" },
+  { id:77, it:"Marco va avanti con la sua vita dopo la fine della relazione.",         en:"Marco moves on with his life after the relationship ends.",                 cat:"Daily Life", lv:"B2", colloc_en:"moves on",              colloc_it:"va avanti/supera" },
+  { id:78, it:"Giulia si apre con la sua migliore amica e racconta tutto.",            en:"Giulia opens up to her best friend and tells her everything.",              cat:"Daily Life", lv:"B2", colloc_en:"opens up to",            colloc_it:"si apre con/si confida con" },
+  { id:79, it:"Anna ricomincia da capo dopo il fallimento dell'attività.",             en:"Anna starts over after the failure of her business.",                       cat:"Daily Life", lv:"B2", colloc_en:"starts over",            colloc_it:"ricomincia da capo" },
+  { id:80, it:"Pietro crolla emotivamente sotto il peso dello stress accumulato.",     en:"Pietro breaks down under the weight of accumulated stress.",                cat:"Daily Life", lv:"B2", colloc_en:"breaks down",           colloc_it:"crolla/cede emotivamente" },
+  { id:81, it:"Marco riesce a superare la situazione difficile con l'aiuto di tutti.", en:"Marco gets through the difficult situation with everyone's help.",          cat:"Daily Life", lv:"B2", colloc_en:"gets through",           colloc_it:"riesce a superare/sopravvive a" },
+  { id:82, it:"Giulia fa attenzione agli ostacoli mentre corre nel parco.",            en:"Giulia looks out for obstacles while running in the park.",                 cat:"Daily Life", lv:"B1", colloc_en:"looks out for",          colloc_it:"fa attenzione a/sta in guardia" },
+  { id:83, it:"Anna dedica il sabato mattina al giardinaggio come hobby.",             en:"Anna takes up gardening as a hobby on Saturday mornings.",                  cat:"Daily Life", lv:"B1", colloc_en:"takes up",              colloc_it:"inizia/si dedica a" },
+  { id:84, it:"Pietro sopporta il comportamento scortese del vicino per anni.",        en:"Pietro puts up with his rude neighbour's behaviour for years.",             cat:"Daily Life", lv:"B2", colloc_en:"puts up with",           colloc_it:"sopporta/tollera" },
+  { id:85, it:"Marco riduce il consumo di zucchero per migliorare la salute.",        en:"Marco cuts down on his sugar intake to improve his health.",                cat:"Daily Life", lv:"B1", colloc_en:"cuts down on",           colloc_it:"riduce/diminuisce" },
+  { id:86, it:"Giulia aspetta pazientemente che arrivi il suo turno.",                 en:"Giulia holds on patiently until it is her turn.",                           cat:"Daily Life", lv:"A2", colloc_en:"holds on",              colloc_it:"aspetta/tiene duro" },
+  { id:87, it:"Anna evoca i ricordi della sua infanzia con nostalgia.",               en:"Anna brings back memories of her childhood with nostalgia.",                cat:"Daily Life", lv:"B2", colloc_en:"brings back",            colloc_it:"riporta/evoca" },
+  { id:88, it:"Pietro rallenta il passo quando inizia a sentire il fiato corto.",     en:"Pietro slows down when he starts feeling short of breath.",                 cat:"Daily Life", lv:"B1", colloc_en:"slows down",            colloc_it:"rallenta" },
+  { id:89, it:"Marco si tira su di morale con una passeggiata e un caffè.",           en:"Marco cheers himself up with a walk and a coffee.",                         cat:"Daily Life", lv:"B1", colloc_en:"cheers himself up",      colloc_it:"si tira su di morale" },
+  { id:90, it:"Giulia parte di prima mattina per evitare il traffico.",                en:"Giulia sets off early in the morning to avoid the traffic.",                 cat:"Daily Life", lv:"B1", colloc_en:"sets off",              colloc_it:"parte/si mette in viaggio" },
+  { id:91, it:"Anna va d'accordo con tutti i colleghi del suo ufficio.",              en:"Anna gets along with all of her office colleagues.",                        cat:"Daily Life", lv:"B1", colloc_en:"gets along with",        colloc_it:"va d'accordo con" },
+  { id:92, it:"Pietro litiga con il suo migliore amico per una questione di soldi.",  en:"Pietro falls out with his best friend over a money issue.",                 cat:"Daily Life", lv:"B2", colloc_en:"falls out with",         colloc_it:"litiga con/si scontra con" },
+  { id:93, it:"Marco si riprende velocemente dall'influenza grazie al riposo.",        en:"Marco gets over the flu quickly thanks to plenty of rest.",                 cat:"Daily Life", lv:"B1", colloc_en:"gets over",             colloc_it:"si riprende da/supera" },
+  { id:94, it:"Giulia rimanda la visita dal dentista da settimane per paura.",         en:"Giulia puts off her dentist appointment for weeks out of fear.",            cat:"Daily Life", lv:"B1", colloc_en:"puts off",              colloc_it:"rimanda/posticipa" },
+  { id:95, it:"Pietro trascorre la serata con vecchi amici del liceo.",               en:"Pietro hangs out with old friends from secondary school in the evening.",   cat:"Daily Life", lv:"A2", colloc_en:"hangs out with",          colloc_it:"trascorre tempo con" },
+  { id:96, it:"Anna si libera di tutti i vestiti che non indossa più da anni.",       en:"Anna gets rid of all the clothes she no longer wears.",                     cat:"Daily Life", lv:"B1", colloc_en:"gets rid of",            colloc_it:"si libera di/butta via" },
+  { id:97, it:"Marco si imbatte in un documentario interessante per caso.",            en:"Marco comes across an interesting documentary by chance.",                  cat:"Daily Life", lv:"B1", colloc_en:"comes across",           colloc_it:"si imbatte in/trova per caso" },
+  { id:98, it:"Pietro torna su una decisione presa in fretta e la cambia.",           en:"Pietro goes back on a decision he made in haste and changes it.",           cat:"Daily Life", lv:"B2", colloc_en:"goes back on",           colloc_it:"torna su/cambia" },
+  { id:99, it:"Giulia si aggiorna sulle ultime notizie prima di andare a dormire.",   en:"Giulia catches up on the latest news before going to bed.",                 cat:"Daily Life", lv:"B1", colloc_en:"catches up on",          colloc_it:"si aggiorna su" },
+  { id:100,it:"Anna regge emotivamente anche nella situazione più difficile della sua vita.", en:"Anna holds up emotionally even in the most difficult situation of her life.", cat:"Daily Life", lv:"C1", colloc_en:"holds up",       colloc_it:"regge/resiste" },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -662,6 +774,8 @@ html,body{
 
 /* ── HOME MODE GRID ── */
 .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:1.6rem;}
+.mode-grid-3{grid-template-columns:repeat(3,1fr);}
+@media(max-width:480px){.mode-grid-3{grid-template-columns:1fr 1fr;}}
 .mode-card{
   background:var(--card2);border:1.5px solid var(--border);
   border-radius:16px;padding:1.4rem 1.2rem;cursor:pointer;
@@ -988,6 +1102,14 @@ export default function App() {
   // Agent 1 fix: separate "showNext" so we can display explanation before auto-advancing
   const [showPrepNext, setShowPrepNext] = useState(false);
 
+  // Phrasal Verbs state (reuses same fill-in-blank engine as collocations)
+  const [pvDeck, setPvDeck] = useState([]);
+  const [pvIdx, setPvIdx] = useState(0);
+  const [pvInput, setPvInput] = useState("");
+  const [pvResult, setPvResult] = useState(null);
+  const [pvHistory, setPvHistory] = useState([]);
+  const pvInputRef = useRef();
+
   // Persistence
   const [sessions, setSessions] = useState(() => loadSessions());
   const [wrongItems, setWrongItems] = useState(() => loadWrong());
@@ -1028,6 +1150,55 @@ export default function App() {
     const pool = shuffle(PREPS).slice(0, 15).map(q => ({ ...q, opts: shuffle(q.opts) }));
     setPrepDeck(pool); setPrepIdx(0); setPrepSelected(null); setPrepHistory([]); setShowPrepNext(false);
     setScreen("preps");
+  }
+
+  // Start phrasal verbs (same engine as collocations, filtered by cat/lv)
+  function startPv() {
+    const pvFiltered = PV.filter(c =>
+      (catF === "All" || c.cat === catF) &&
+      (lvF  === "All" || c.lv  === lvF)
+    );
+    if (!pvFiltered.length) return;
+    sessionIdRef.current = Date.now();
+    const pool = shuffle(pvFiltered).slice(0, Math.min(ROUND, pvFiltered.length));
+    setPvDeck(pool); setPvIdx(0); setPvInput(""); setPvResult(null); setPvHistory([]);
+    setScreen("pvQuiz");
+    setTimeout(() => pvInputRef.current?.focus(), 120);
+  }
+
+  function handlePvSubmit() {
+    if (pvResult) { advancePv(); return; }
+    if (!pvInput.trim()) return;
+    const card = pvDeck[pvIdx];
+    const status = matchScore(pvInput, card.colloc_en);
+    setPvResult({ status });
+    const newEntry = { card, status, given: pvInput };
+    const newHistory = [...pvHistory, newEntry];
+    setPvHistory(newHistory);
+    if (status === "wrong") {
+      const w = { id: card.id + 20000, type: "pv", it: card.colloc_it, en: card.colloc_en, given: pvInput, sessionId: sessionIdRef.current, ts: Date.now() };
+      const upd = [...wrongItems, w];
+      setWrongItems(upd); saveWrong(upd);
+    }
+  }
+
+  function advancePv() {
+    const ni = pvIdx + 1;
+    if (ni >= pvDeck.length) {
+      finishPv([...pvHistory]);
+    } else {
+      setPvIdx(ni); setPvInput(""); setPvResult(null);
+      setTimeout(() => pvInputRef.current?.focus(), 80);
+    }
+  }
+
+  function finishPv(finalHistory) {
+    const correct = finalHistory.filter(h => h.status === "exact").length;
+    const acc = Math.round((correct / Math.max(finalHistory.length, 1)) * 100);
+    const newSess = { id: sessionIdRef.current, date: new Date().toLocaleDateString("it-IT"), mode: "Phrasal Verbs", total: finalHistory.length, correct, acc };
+    const upd = [...sessions, newSess].slice(-20);
+    setSessions(upd); saveSessions(upd);
+    setScreen("pvResults");
   }
 
   // Colloc submit
@@ -1127,7 +1298,7 @@ export default function App() {
     <div className="ctt"><div className="ctt-l">Sessione {label}</div><div className="ctt-v">{payload[0].value}%</div></div>
   );
 
-  const inGame = screen === "quiz" || screen === "preps";
+  const inGame = screen === "quiz" || screen === "preps" || screen === "pvQuiz";
 
   return (
     <>
@@ -1180,16 +1351,21 @@ export default function App() {
         {screen === "home" && (
           <div className="screen">
             <p className="sl">Modalità di esercizio</p>
-            <div className="mode-grid">
+            <div className="mode-grid mode-grid-3">
               <button className={`mode-card${gameMode==="collocations"?" active":""}`} onClick={() => setGameMode("collocations")}>
                 <div className="mc-icon">📝</div>
                 <div className="mc-title">Collocations</div>
-                <div className="mc-sub">Impara le combinazioni di parole usate dai madrelingua nei contesti reali.</div>
+                <div className="mc-sub">Completa la frase con la combinazione giusta usata dai madrelingua.</div>
+              </button>
+              <button className={`mode-card${gameMode==="pv"?" active":""}`} onClick={() => setGameMode("pv")}>
+                <div className="mc-icon">🚀</div>
+                <div className="mc-title">Phrasal Verbs</div>
+                <div className="mc-sub">Completa la frase con il phrasal verb corretto nel contesto giusto.</div>
               </button>
               <button className={`mode-card${gameMode==="preps"?" active":""}`} onClick={() => setGameMode("preps")}>
                 <div className="mc-icon">🔗</div>
                 <div className="mc-title">Preposizioni</div>
-                <div className="mc-sub">Scegli la preposizione corretta e scopri perché è quella giusta.</div>
+                <div className="mc-sub">Scegli la preposizione corretta e memorizza lo schema grammaticale.</div>
               </button>
             </div>
 
@@ -1213,6 +1389,33 @@ export default function App() {
                     {Math.min(ROUND, filtered.length)} domande per sessione
                   </div>
                   <button className="start-btn" onClick={startColloc} disabled={!filtered.length}>Inizia ▶</button>
+                </div>
+              </>
+            )}
+
+            {gameMode === "pv" && (
+              <>
+                <p className="sl">Categoria</p>
+                <div className="chips">
+                  {CATS.map(c => (
+                    <button key={c} className={`chip${catF===c?" on":""}`} onClick={() => setCatF(c)}>{c}</button>
+                  ))}
+                </div>
+                <p className="sl">Livello</p>
+                <div className="chips">
+                  {LEVELS.map(l => (
+                    <button key={l} className={`chip${lvF===l?" on":""}`} onClick={() => setLvF(l)}>{l}</button>
+                  ))}
+                </div>
+                <div className="start-card">
+                  <div className="start-info">
+                    <strong>{PV.filter(c=>(catF==="All"||c.cat===catF)&&(lvF==="All"||c.lv===lvF)).length} frasi disponibili</strong>
+                    {Math.min(ROUND, PV.filter(c=>(catF==="All"||c.cat===catF)&&(lvF==="All"||c.lv===lvF)).length)} domande per sessione
+                  </div>
+                  <button className="start-btn"
+                    onClick={startPv}
+                    disabled={!PV.filter(c=>(catF==="All"||c.cat===catF)&&(lvF==="All"||c.lv===lvF)).length}
+                  >Inizia ▶</button>
                 </div>
               </>
             )}
@@ -1303,6 +1506,86 @@ export default function App() {
                 disabled={!result && !input.trim()}
               >
                 {result ? (idx+1 >= deck.length ? "Vedi risultati →" : "Prossima →") : "Controlla"}
+              </button>
+            </div>
+          );
+        })()}
+
+
+        {/* ══ PHRASAL VERBS QUIZ — fill-in-the-blank (same engine as collocations) ══ */}
+        {screen === "pvQuiz" && pvDeck[pvIdx] && (() => {
+          const pvCard = pvDeck[pvIdx];
+          const pvCatC = catColor(pvCard.cat);
+          const pvProg = pvDeck.length ? (pvIdx / pvDeck.length) * 100 : 0;
+          const lower  = pvCard.en.toLowerCase();
+          const lc     = pvCard.colloc_en.toLowerCase();
+          const pos    = lower.indexOf(lc);
+          const before = pos >= 0 ? pvCard.en.slice(0, pos) : pvCard.en;
+          const after  = pos >= 0 ? pvCard.en.slice(pos + pvCard.colloc_en.length) : "";
+          const blankText = pvResult
+            ? (pvResult.status === "wrong" ? pvCard.colloc_en : (pvInput || pvCard.colloc_en))
+            : "___________";
+          return (
+            <div className="screen">
+              <div className="quiz-header">
+                <div className="prog-track"><div className="prog-fill" style={{width:`${pvProg}%`}}/></div>
+                <div className="q-counter">{pvIdx+1} / {pvDeck.length}</div>
+              </div>
+              <div className="qcard" style={{"--cat-color": pvCatC}}>
+                <div className="qcard-meta">
+                  <span className="cat-pill" style={{color:pvCatC,borderColor:pvCatC+"66"}}>{pvCard.cat}</span>
+                  <span className="lv-pill">{pvCard.lv}</span>
+                  <span className="lv-pill" style={{color:"#a78bfa",background:"rgba(167,139,250,.1)"}}>Phrasal Verb</span>
+                </div>
+                <div className="q-it-context">🇮🇹 {pvCard.it}</div>
+                <div className="q-label">Completa con il phrasal verb</div>
+                <div className="sentence-en">
+                  {pos >= 0 ? (
+                    <>
+                      {before}
+                      <span className={`colloc-blank${pvResult ? " "+pvResult.status : ""}`}>{blankText}</span>
+                      {after}
+                    </>
+                  ) : pvCard.en}
+                </div>
+                {!pvResult && (
+                  <div className="hint-box">
+                    <span className="hint-label">💡 Suggerimento</span>
+                    <span className="hint-text">{pvCard.colloc_it}</span>
+                  </div>
+                )}
+              </div>
+              <div className="ans-wrap">
+                <input
+                  ref={pvInputRef}
+                  className={`ans-input${pvResult?" "+pvResult.status:""}`}
+                  value={pvInput}
+                  onChange={e => setPvInput(e.target.value)}
+                  onKeyDown={e => e.key==="Enter" && handlePvSubmit()}
+                  placeholder={`Traduci: "${pvCard.colloc_it}"…`}
+                  disabled={!!pvResult}
+                  autoComplete="off" autoCorrect="off" spellCheck="false"
+                />
+              </div>
+              {pvResult && (
+                <div className={`feedback ${pvResult.status}`}>
+                  <div className="fb-icon">{pvResult.status==="exact"?"✅":pvResult.status==="close"?"🟡":pvResult.status==="partial"?"🟠":"❌"}</div>
+                  <div className="fb-content">
+                    <div className="fb-title">
+                      {pvResult.status==="exact"?"Perfetto!":pvResult.status==="close"?"Quasi perfetto!":pvResult.status==="partial"?"Parzialmente corretto":"Non corretto"}
+                    </div>
+                    {pvResult.status !== "exact" && (
+                      <div className="fb-ans">Risposta corretta: <strong>{pvCard.colloc_en}</strong></div>
+                    )}
+                  </div>
+                </div>
+              )}
+              <button
+                className={`action-btn ${pvResult?"next-q":"check"}`}
+                onClick={handlePvSubmit}
+                disabled={!pvResult && !pvInput.trim()}
+              >
+                {pvResult ? (pvIdx+1 >= pvDeck.length ? "Vedi risultati →" : "Prossima →") : "Controlla"}
               </button>
             </div>
           );
@@ -1438,6 +1721,57 @@ export default function App() {
           </div>
         )}
 
+
+        {/* ══ PV RESULTS ══ */}
+        {screen === "pvResults" && (() => {
+          const pvCorrect = pvHistory.filter(h => h.status === "exact").length;
+          const pvAcc = Math.round((pvCorrect / Math.max(pvHistory.length, 1)) * 100);
+          const pvrm = pvAcc >= 80 ? {emoji:"🏆",title:"Ottimo!",sub:"Padronanza eccellente dei phrasal verbs!"} :
+                       pvAcc >= 60 ? {emoji:"🎯",title:"Bene!",sub:"Stai migliorando, continua così!"} :
+                                     {emoji:"📚",title:"Continua a studiare!",sub:"I phrasal verbs richiedono pratica costante."};
+          return (
+            <div className="screen">
+              <div className="result-banner">
+                <div className="result-top">
+                  <div className="result-emoji">{pvrm.emoji}</div>
+                  <div className="result-title">{pvrm.title}</div>
+                  <div className="result-sub">{pvrm.sub}</div>
+                </div>
+                <div className="result-bar"/>
+                <div className="stat-grid">
+                  {[
+                    [pvCorrect+"/"+pvHistory.length,"Corrette"],
+                    [pvAcc+"%","Precisione"],
+                    [pvHistory.filter(h=>h.status==="wrong").length,"Errori"],
+                  ].map(([v,l],i) => (
+                    <div key={i} className="stat-box">
+                      <div className="stat-val" style={{color:["var(--blue2)","var(--green)","var(--wrong-c)"][i]}}>{v}</div>
+                      <div className="stat-lbl">{l}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="review-list">
+                  <div className="review-head">Riepilogo phrasal verbs</div>
+                  {pvHistory.map((h,i) => (
+                    <div key={i} className="ri">
+                      <div className="ri-dot" style={{background:h.status==="exact"?"var(--correct)":h.status==="wrong"?"var(--wrong-c)":"var(--orange)"}}/>
+                      <div>
+                        <div className="ri-it">{h.card.it}</div>
+                        <div className="ri-en">{h.card.colloc_en}</div>
+                        {h.status!=="exact" && <div className="ri-given">Hai scritto: {h.given}</div>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="btn-row">
+                  <button className="btn-sec" onClick={() => setScreen("home")}>← Home</button>
+                  <button className="btn-pri" onClick={startPv}>Rigioca ↺</button>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
         {/* ══ RIPASSO ══ */}
         {screen === "ripasso" && (
           <div className="screen">
@@ -1456,6 +1790,19 @@ export default function App() {
                     {recentWrong.filter(w=>w.type==="colloc").map((w,i) => (
                       <div key={i} className="ripasso-item">
                         <div className="ri-type-badge">Collocation</div>
+                        <div className="ripasso-q">{w.it}</div>
+                        <div className="ripasso-a">Risposta: <span>{w.en}</span></div>
+                        {w.given && <div className="ri-given" style={{fontSize:".78rem",color:"var(--text3)",marginTop:".3rem"}}>Hai scritto: "{w.given}"</div>}
+                      </div>
+                    ))}
+                  </>
+                )}
+                {recentWrong.filter(w=>w.type==="pv").length>0 && (
+                  <>
+                    <p className="sl" style={{marginTop:"1.1rem"}}>Phrasal Verbs</p>
+                    {recentWrong.filter(w=>w.type==="pv").map((w,i) => (
+                      <div key={i} className="ripasso-item">
+                        <div className="ri-type-badge" style={{color:"#a78bfa",borderColor:"rgba(167,139,250,.3)",background:"rgba(167,139,250,.08)"}}>Phrasal Verb</div>
                         <div className="ripasso-q">{w.it}</div>
                         <div className="ripasso-a">Risposta: <span>{w.en}</span></div>
                         {w.given && <div className="ri-given" style={{fontSize:".78rem",color:"var(--text3)",marginTop:".3rem"}}>Hai scritto: "{w.given}"</div>}
@@ -1500,7 +1847,7 @@ export default function App() {
                   [sessions.length,"Sessioni"],
                   [avgAcc+"%","Media"],
                   [bestAcc+"%","Record"],
-                  [sessions.filter(s=>s.mode==="Collocations").length,"Colloc"],
+                  [sessions.filter(s=>s.mode==="Collocations"||s.mode==="Phrasal Verbs").length,"Fill-in"],
                 ].map(([v,l],i) => (
                   <div key={i} className="bstat">
                     <div className="bstat-v">{v}</div>
@@ -1573,7 +1920,7 @@ export default function App() {
               <p>I dati (sessioni, errori) sono salvati solo sul tuo dispositivo e non vengono trasmessi ad alcun server.</p>
             </div>
             <div className="info-card" style={{textAlign:"center"}}>
-              <div className="version">PhraseUp! v3.0 · {DB.length} collocations · {PREPS.length} preposizioni</div>
+              <div className="version">PhraseUp! v4.0 · {DB.length} collocations · {PV.length} phrasal verbs · {PREPS.length} preposizioni</div>
             </div>
             <div style={{display:"flex",justifyContent:"center",marginTop:".5rem",marginBottom:"1rem"}}>
               <button className="nav-btn" onClick={() => setScreen("home")}>← Home</button>
